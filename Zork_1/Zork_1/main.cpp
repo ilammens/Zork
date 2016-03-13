@@ -1,19 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "funcs.h"
+#include "world.h"
+#include "room.h"
 
-class world
+
+
+main()
 {
-public:
+	int opc;
 
-	room* rooms = new rooms();
-	
-	{
-		world() = new[13];
-	}
+	char dir;
 
+	do //loop to ask for directions
 	{
-		~world() = delete[13];
-	}
-};
+		printf("In which direction do you want to go? (n/s/e/w)");
+		scanf_s("%c", &dir);
+
+
+
+	} while (dir != 'q')
+}
 

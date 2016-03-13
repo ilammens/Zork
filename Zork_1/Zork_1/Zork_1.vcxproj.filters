@@ -18,12 +18,24 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="funcs.cpp">
+    <ClCompile Include="room.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="world.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="exits.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="funcs.h">
+    <ClInclude Include="room.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="world.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="exits.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
