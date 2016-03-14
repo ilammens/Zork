@@ -2,7 +2,6 @@
 #define _ROOM_
 
 #include "world.h"
-#include <string.h>
 
 class room
 {
