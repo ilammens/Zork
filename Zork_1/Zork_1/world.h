@@ -8,8 +8,6 @@ public:
 	world();
 	~world();
 
-	void create_world();
-
 };
 
 #endif
