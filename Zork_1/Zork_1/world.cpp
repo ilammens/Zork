@@ -1,14 +1,24 @@
 #include "world.h"
+#include "room.h"
+#include "exits.h"
+#include "player.h"
 
-class world
+world::world()
 {
-public:
+	rooms = new room[NUM_ROOMS];
+	exits = new exit[/*count exit num!*/];
+	players = new player[1];
+}
 
-	{
-		world() = new[13];
-	}
+world::~world()
+{
+	delete[] rooms;
+	delete[] exits;
+	delete[] players;
+}
 
-	{
-		~world() = delete[13];
-	}
-};
+void const world::create_world()
+{
+	int i;
+
+}
