@@ -5,7 +5,7 @@ class world
 public:
 
 	{
-	world() = new[13];
+		world() = new[13];
 	}
 
 	{
