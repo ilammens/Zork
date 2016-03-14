@@ -1,10 +1,9 @@
 #include "world.h"
 #include "room.h"
 #include "exits.h"
+#include "player.h"
 
-room* rooms = new room(); //pointer to rooms
-
-enum 
+enum room_names
 {
 
 	START = 1,

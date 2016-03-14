@@ -8,10 +8,12 @@ class room
 {
 public:
 
-	virtual void north();
-	virtual void south();
-	virtual void east();
-	virtual void west();
+	char name;
+	char description;
+	char north;
+	char south;
+	char east;
+	char west;
 
 };
 

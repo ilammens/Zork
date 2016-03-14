@@ -5,10 +5,15 @@ class exit
 {
 public:
 
-	virtual void north();
-	virtual void south();
-	virtual void east();
-	virtual void west();
+	char name[30];
+	char description[300];
+	char north;
+	char south;
+	char east;
+	char west;
+
+	room* origin;
+	room* destination; 
 
 };
 
