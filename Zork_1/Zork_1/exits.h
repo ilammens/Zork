@@ -1,17 +1,19 @@
 #ifndef _EXITS_
 #define _EXITS_
 
-class exit
+enum direct { north, south, east, west };
+
+class Exit
 {
 public:
 
 	char name[30];
 	char description[300];
 
-	room* origin;
-	room* destination; 
+	Room* origin;
+	Room* destination;
+	direct direction;
 
-	enum direction {north, south, east, west};
 
 };
 

@@ -4,7 +4,7 @@
 class player
 {
 public:
-	void move();
+
 	void look();
 };
 

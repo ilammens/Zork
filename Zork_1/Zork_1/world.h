@@ -4,13 +4,19 @@
 #define NUM_ROOMS 13
 #define NUM_EXITS 19 //will vary when implementing traps
 
+#include "room.h"
+#include "exits.h"
+#include "player.h"
+
 class world
 {
 public:
 
-	room* rooms;
-	exit* exits;
-	
+	Room* rooms;
+	Exit* exits;
+	player* players;
+
+public:
 	world();
 	~world();
 

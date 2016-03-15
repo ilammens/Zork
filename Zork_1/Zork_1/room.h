@@ -4,7 +4,7 @@
 #include "world.h"
 #include <string.h>
 
-class room
+class Room
 {
 public:
 
