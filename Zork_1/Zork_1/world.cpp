@@ -3,22 +3,23 @@
 #include "exits.h"
 #include "player.h"
 #include <string.h>
+#include <stdio.h>
 
 world::world()
 {
 	rooms = new room[NUM_ROOMS];
-	exits = new exit[/*count exit num!*/];
-	players = new player[1];
+	exit = new exit[NUM_EXITS];
+	you = new player[1];
 }
 
 world::~world()
 {
 	delete[] rooms;
 	delete[] exits;
-	delete[] players;
+	delete[] you;
 }
 
-void const world::create_world()
+void world::create_world()
 {
 	int i, j; //i -> rooms, j -> exits;
 	
@@ -189,4 +190,29 @@ void const world::create_world()
 		strcpy_s((rooms + i)->description, "This is a huge decaying, underground arena. Its flattened sand floor and its stone arches carved in the walls of the cavern give you chills. A hooded figure stands in the middle of the room. You can't exit this room.\n");
 
 
+}
+
+void world::move()
+{
+		int instruction;
+		//what can you do?
+		char look = 'look';
+		char help = 'help';
+		char quit = 'quit';
+
+		int i = 0; //rooms
+		int j = 0; //exits
+
+		printf("%s\n%s\n", ((rooms + i)->name), ((rooms + i)->description));
+
+		while (i < 19)
+		{
+			if ((rooms + i) == ((exit + i)->origin))
+			{
+				//set new position
+				(rooms + i) = (exit + i)->destination
+			}
+
+			i++;
+		}
 }

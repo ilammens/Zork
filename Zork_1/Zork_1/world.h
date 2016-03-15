@@ -2,6 +2,7 @@
 #define _WORLD_
 
 #define NUM_ROOMS 13
+#define NUM_EXITS 19 //will vary when implementing traps
 
 class world
 {
@@ -14,6 +15,7 @@ public:
 	~world();
 
 	void create_world();
+	void move();
 
 };
 
