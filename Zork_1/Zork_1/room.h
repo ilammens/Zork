@@ -8,12 +8,8 @@ class room
 {
 public:
 
-	char name;
-	char description;
-	char north;
-	char south;
-	char east;
-	char west;
+	char name[30];
+	char description[500];
 
 };
 

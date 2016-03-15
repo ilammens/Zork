@@ -7,13 +7,11 @@ public:
 
 	char name[30];
 	char description[300];
-	char north;
-	char south;
-	char east;
-	char west;
 
 	room* origin;
 	room* destination; 
+
+	enum direction {north, south, east, west};
 
 };
 

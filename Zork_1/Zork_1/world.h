@@ -10,10 +10,7 @@ public:
 	room* rooms;
 	exit* exits;
 	
-	world()
-	{
-		rooms = new room[NUM_ROOMS];
-	}
+	world();
 	~world();
 
 	void create_world();
