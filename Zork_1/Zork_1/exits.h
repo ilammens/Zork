@@ -9,6 +9,7 @@ public:
 
 	char name[30];
 	char description[300];
+	bool door;
 
 	Room* origin;
 	Room* destination;

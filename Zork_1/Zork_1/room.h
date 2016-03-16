@@ -1,9 +1,6 @@
 #ifndef _ROOM_
 #define _ROOM_
 
-#include "world.h"
-#include <string.h>
-
 class Room
 {
 public:
