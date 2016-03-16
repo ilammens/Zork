@@ -20,8 +20,8 @@ public:
 	world();
 	~world();
 
-	void create_world();
-	void move();
+	void const create_world();
+	void const move();
 
 };
 
