@@ -2,7 +2,7 @@
 #define _WORLD_
 
 #define NUM_ROOMS 13
-#define NUM_EXITS 23 //will vary when implementing traps
+#define NUM_EXITS 21 //will vary when implementing traps
 
 #include "room.h"
 #include "exits.h"

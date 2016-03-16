@@ -34,6 +34,7 @@ void world::create_world()
 	(exits + j)->destination = (rooms + 1); //waterfall
 	(exits + j)->direction = north;
 	strcpy_s((exits + i)->description, "There seems to be a path leading northwards. You hear water roaring if you listen carefully.\n");
+	strcpy_s((exits + i)->name, "Rocky path");
 	(exits + j)->door_state = OPEN;
 
 	j = 1;
@@ -115,7 +116,7 @@ void world::create_world()
 	(exits + j)->destination = (rooms + 4); //underground temple
 	(exits + j)->direction = east;
 	strcpy_s((exits + i)->description, "There's a wooden door to the east. It appears to be locked.\n");
-	(exits + j)->door_state = CLOSED;
+	(exits + j)->door_state = OPEN;
 
 
 	//crystal cave
@@ -135,7 +136,7 @@ void world::create_world()
 	(exits + j)->destination = (rooms + 7); //dragon statue
 	(exits + j)->direction = north;
 	strcpy_s((exits + i)->description, "There's a huge locked door to your north. I wonder where it leads...\n");
-	(exits + j)->door_state = CLOSED;
+	(exits + j)->door_state = OPEN;
 
 	j = 11;
 	(exits + j)->origin = (rooms + 6);
@@ -154,14 +155,14 @@ void world::create_world()
 	(exits + j)->destination = (rooms + 8); //dragon room!
 	(exits + j)->direction = north;
 	strcpy_s((exits + i)->description, "You hear deep, rumbling sounds coming from the north, from behind a door. I wonder if it's a good idea to go there... *shivers*\n");
-	(exits + j)->door_state = CLOSED;
+	(exits + j)->door_state = OPEN;
 
 	j = 13;
 	(exits + j)->origin = (rooms + 7);
 	(exits + j)->destination = (rooms + 6); //crystal cave
 	(exits + j)->direction = south;
 	strcpy_s((exits + i)->description, "There's a door leading south. It appears to lead to the Crystal Cave again.\n");
-	(exits + j)->door_state = CLOSED;
+	(exits + j)->door_state = OPEN;
 
 	//Dragon room!
 	i = 8;
@@ -173,12 +174,12 @@ void world::create_world()
 	(exits + j)->destination = (rooms + 7); //dragon statue
 	(exits + j)->direction = south;
 	strcpy_s((exits + i)->description, "Wanna run from the dragon, huh? Quick, head south! There's a door there!\n");
-	(exits + j)->door_state = CLOSED;
+	(exits + j)->door_state = OPEN;
 
 	//Underground lake
 	i = 9;
 	strcpy_s((rooms + i)->name, "Underground lake\n");
-	strcpy_s((rooms + i)->description, "A relatively small and shallow lake occupies this secondary cave. Luminescent plants submerge the cave in a strange greenish light. There's a passageway to the west and a bridge to the east, that crosses the lake, and a staircase to the north. You can't see where it ends.\n");
+	strcpy_s((rooms + i)->description, "A relatively small and shallow lake occupies this secondary cave. Luminescent plants submerge the cave in a strange greenish light. There's a passageway to the west and a bridge to the east, that crosses the lake, and a staircase to the northwest. You can't see where it ends.\n");
 
 	j = 15;
 	(exits + j)->origin = (rooms + 9);
@@ -192,13 +193,6 @@ void world::create_world()
 	(exits + j)->destination = (rooms + 10); //catacombs
 	(exits + j)->direction = east;
 	strcpy_s((exits + i)->description, "There's a bridge that crosses the lake to the east. It appears to lead to an eerie, dark room.\n");
-	(exits + j)->door_state = OPEN;
-
-	j = 21; //added this exit later
-	(exits + j)->origin = (rooms + 9);
-	(exits + j)->destination = (rooms + 0); //go back to start :(
-	(exits + j)->direction = north;
-	strcpy_s((exits + i)->description, "Ouch! You fell down the stairs and blacked out. When you wake up, you're at the starting point again...\n");
 	(exits + j)->door_state = OPEN;
 
 	//Catacombs
@@ -250,13 +244,15 @@ void world::create_world()
 void world::move()
 {
 	char instruction[20]; //stores player's input command
+	
+	char answer[20]; //used for double word commands
 
 	int i = 0; //exits
 
 	(players->loc) = (rooms + 0); //player's initial position (start)
 	
 
-	printf("You can use the following instructions to play:\n north/n/go north\nsouth/s/go south\neast/e/go east\nwest/w/go west\nlook\nhelp\ngo\nquit\n");
+	printf("You can use the following instructions to play:\nnorth/n/go north\nsouth/s/go south\neast/e/go east\nwest/w/go west\nlook (direction)\nopen (direction)\nhelp\ngo\nquit/q\n");
 
 	printf("You are now here: %s\n%s\n", ((players->loc)->name), ((players->loc)->description)); //initial print, shows initial position
 
@@ -282,7 +278,7 @@ void world::move()
 
 					else if ((exits + i)->door_state == CLOSED)
 					{
-						printf("The door is locked. You need to open it first.");
+						printf("The door is locked. You need to open it first.\n");
 						break;
 					}
 				}
@@ -306,14 +302,14 @@ void world::move()
 					{
 						//set new position
 						((players->loc)) = ((exits + i)->destination);
-						printf("You went north. You are now here: %s\n", ((players->loc)->name));
+						printf("You went south. You are now here: %s\n", ((players->loc)->name));
 						printf("%s\n", ((players->loc)->description));
 						break;
 					}
 
 					else if ((exits + i)->door_state == CLOSED)
 					{
-						printf("The door is locked. You need to open it first.");
+						printf("The door is locked. You need to open it first.\n");
 						break;
 					}
 				}
@@ -331,14 +327,14 @@ void world::move()
 					{
 						//set new position
 						((players->loc)) = ((exits + i)->destination);
-						printf("You went north. You are now here: %s\n", ((players->loc)->name));
+						printf("You went east. You are now here: %s\n", ((players->loc)->name));
 						printf("%s\n", ((players->loc)->description));
 						break;
 					}
 
 					else if ((exits + i)->door_state == CLOSED)
 					{
-						printf("The door is locked. You need to open it first.");
+						printf("The door is locked. You need to open it first.\n");
 						break;
 					}
 				}
@@ -357,91 +353,128 @@ void world::move()
 					{
 						//set new position
 						((players->loc)) = ((exits + i)->destination);
-						printf("You went north. You are now here: %s\n", ((players->loc)->name));
+						printf("You went west. You are now here: %s\n", ((players->loc)->name));
 						printf("%s\n", ((players->loc)->description));
 						break;
 					}
 
 					else if ((exits + i)->door_state == CLOSED)
 					{
-						printf("The door is locked. You need to open it first.");
+						printf("The door is locked. You need to open it first.\n");
 						break;
 					}
 				}
+			}
+		}
 
+		else if (strcmp(instruction, "open west") == 0)
+		{
+			for (i = 0; i < 20; i++)
+			{
+				if (((exits + i)->door_state) == CLOSED && ((players->loc) == (exits + 6)->origin)) //opens temple -> bow room
+				{
+					(exits + i)->door_state = OPEN; //changes door state
+					printf("You unlocked the door.\n");
+					break;
+				}
+			}
+		}
 
+		else if (strcmp(instruction, "open east") == 0)
+		{
+			for (i = 0; i < 20; i++)
+			{
+				if (((exits + i)->door_state) == CLOSED && ((players->loc) == (exits + 8)->origin)) //opens bow room -> temple
+				{
+					(exits + i)->door_state = OPEN; //changes door state
+					printf("You unlocked the door.\n");
+					break;
+				}
+			}
+		}
+
+		else if (strcmp(instruction, "close east") == 0)
+		{
+			for (i = 0; i < 20; i++)
+			{
+				if (((exits + i)->door_state) == OPEN && ((players->loc) == (exits + 8)->origin)) //closes bow room -> temple
+				{
+					(exits + i)->door_state = CLOSED; //changes door state
+					printf("You locked the door.\n");
+					break;
+				}
+			}
+		}
+
+		else if (strcmp(instruction, "close west") == 0)
+		{
+			for (i = 0; i < 20; i++)
+			{
+				if (((exits + i)->door_state) == OPEN && ((players->loc) == (exits + 6)->origin)) //closes temple -> bow room
+				{
+					(exits + i)->door_state = CLOSED; //changes door state
+					printf("You locked the door.\n");
+					break;
+				}
 			}
 		}
 
 		else if (strcmp(instruction, "help") == 0)
 		{
-			printf("You can use the following instructions to play:\n north/n/go north\nsouth/s/go south\neast/e/go east\nwest/w/go west\nlook\nhelp\ngo\nquit\n");
+			printf("You can use the following instructions to play:\nnorth/n/go north\nsouth/s/go south\neast/e/go east\nwest/w/go west\nlook (direction)\nopen (direction)\nhelp\ngo\nquit/q\n");
 		}
 
 		else if (strcmp(instruction, "look") == 0)
 		{
-			printf("You are now here: %s\n%s\n", ((players->loc)->name), ((players->loc)->description)); //prints current room description again
+			printf("You are now here: %s\n%s\n", ((players->loc)->name), ((players->loc)->description)); //prints current room name again
+		}
 
-			/* printf("In which direction do you want to have a look? ");
-			scanf_s("%s", &instruction);
-
-			if (strcmp(instruction, "n") == 0 || strcmp(instruction, "north") == 0)
-			{
+		else if (strcmp(instruction, "look north") == 0)
+		{
 			for (i = 0; i < 20; i++)
 			{
-			if (((players->loc) == ((exits + i)->origin)) && ((exits + i)->direction) == north)
-			{
-			printf("%s", ((exits + i)->description)); //prints exit description, meaning where it is and what it looks like
-			break;
+				if (((players->loc) == ((exits + i)->origin)) && ((exits + i)->direction) == north)
+				{
+					printf("To the north there is: %s", ((exits + i)->destination)); //prints north room name
+					break;
+				}
 			}
+		}
 
-
-			}
-			}
-
-			else if (strcmp(instruction, "s") == 0 || strcmp(instruction, "south") == 0)
-			{
+		else if (strcmp(instruction, "look south") == 0)
+		{
 			for (i = 0; i < 20; i++)
 			{
-			if (((players->loc) == ((exits + i)->origin)) && ((exits + i)->direction) == south)
-			{
-			printf("%s", ((exits + i)->description));
-			break;
+				if (((players->loc) == ((exits + i)->origin)) && ((exits + i)->direction) == south)
+				{
+					printf("To the south there is: %s", ((exits + i)->destination)); //prints south room name
+					break;
+				}
 			}
+		}
 
-
-			}
-			}
-
-			else if (strcmp(instruction, "e") == 0 || strcmp(instruction, "east") == 0)
-			{
+		else if (strcmp(instruction, "look east") == 0)
+		{
 			for (i = 0; i < 20; i++)
 			{
-			if (((players->loc) == ((exits + i)->origin)) && ((exits + i)->direction) == east)
-			{
-			printf("%s", ((exits + i)->description));
-			break;
+				if (((players->loc) == ((exits + i)->origin)) && ((exits + i)->direction) == east)
+				{
+					printf("To the east there is: %s", ((exits + i)->destination)); //prints east room name
+					break;
+				}
 			}
+		}
 
-
-			}
-			}
-
-			else if (strcmp(instruction, "w") == 0 || strcmp(instruction, "west") == 0)
-			{
+		else if (strcmp(instruction, "look west") == 0)
+		{
 			for (i = 0; i < 20; i++)
 			{
-			if (((players->loc) == ((exits + i)->origin)) && ((exits + i)->direction) == west)
-			{
-			printf("%s", ((exits + i)->description));
-			break;
+				if (((players->loc) == ((exits + i)->origin)) && ((exits + i)->direction) == west)
+				{
+					printf("To the west there is: %s", ((exits + i)->destination)); //prints west room name
+					break;
+				}
 			}
-
-
-			}
-			} */
-			/*this commented section would allow the user to look in a certain direction, printing thus the selected exit description,
-			but as it was said in class look should only print again the descriptiom of the current room you're in.*/
 		}
 
 		else if (strcmp(instruction, "go") == 0)
