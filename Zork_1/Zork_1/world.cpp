@@ -282,13 +282,6 @@ void world::move()
 						break;
 					}
 				}
-
-				/* else
-				{
-					((players->loc)) = ((exits + i)->destination);
-					printf("You can't go there...\n");
-					break; */
-				
 			}
 		}
 
@@ -313,7 +306,6 @@ void world::move()
 						break;
 					}
 				}
-
 			}
 		}
 
@@ -371,9 +363,9 @@ void world::move()
 		{
 			for (i = 0; i < 20; i++)
 			{
-				if (((exits + i)->door_state) == CLOSED && ((players->loc) == (exits + 6)->origin)) //opens temple -> bow room
+				if ((((exits + i)->door_state) == CLOSED) && (((players->loc) == (exits + 6)->origin) && (((exits+6)->direction) = west))) //opens temple -> bow room
 				{
-					(exits + i)->door_state = OPEN; //changes door state
+					((exits + 6)->door_state) = OPEN; //changes door state
 					printf("You unlocked the door.\n");
 					break;
 				}
@@ -384,9 +376,9 @@ void world::move()
 		{
 			for (i = 0; i < 20; i++)
 			{
-				if (((exits + i)->door_state) == CLOSED && ((players->loc) == (exits + 8)->origin)) //opens bow room -> temple
+				if ((((exits + i)->door_state) == CLOSED) && (((players->loc) == (exits + 8)->origin) && (((exits + 8)->direction) = east))) //opens bow room -> temple
 				{
-					(exits + i)->door_state = OPEN; //changes door state
+					((exits + 8)->door_state) = OPEN; //changes door state
 					printf("You unlocked the door.\n");
 					break;
 				}
@@ -397,9 +389,9 @@ void world::move()
 		{
 			for (i = 0; i < 20; i++)
 			{
-				if (((exits + i)->door_state) == OPEN && ((players->loc) == (exits + 8)->origin)) //closes bow room -> temple
+				if ((((exits + i)->door_state) == OPEN) && (((players->loc) == (exits + 8)->origin) && (((exits + 8)->direction) = east))) //closes bow room -> temple
 				{
-					(exits + i)->door_state = CLOSED; //changes door state
+					((exits + 8)->door_state) = CLOSED; //changes door state
 					printf("You locked the door.\n");
 					break;
 				}
@@ -410,9 +402,9 @@ void world::move()
 		{
 			for (i = 0; i < 20; i++)
 			{
-				if (((exits + i)->door_state) == OPEN && ((players->loc) == (exits + 6)->origin)) //closes temple -> bow room
+				if ((((exits + i)->door_state) == OPEN) && (((players->loc) == (exits + 6)->origin) && (((exits + 6)->direction) = west))) //closes temple -> bow room
 				{
-					(exits + i)->door_state = CLOSED; //changes door state
+					((exits + 6)->door_state) = CLOSED; //changes door state
 					printf("You locked the door.\n");
 					break;
 				}
