@@ -1,5 +1,5 @@
-#ifndef _PLAYER_
-#define _PLAYER_
+#ifndef __PLAYER__
+#define __PLAYER__
 
 #include "room.h"
 

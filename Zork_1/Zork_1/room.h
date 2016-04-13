@@ -1,5 +1,5 @@
-#ifndef _ROOM_
-#define _ROOM_
+#ifndef __ROOM__
+#define __ROOM__
 
 class Room
 {

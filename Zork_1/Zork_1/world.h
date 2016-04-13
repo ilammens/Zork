@@ -1,5 +1,5 @@
-#ifndef _WORLD_
-#define _WORLD_
+#ifndef __WORLD__
+#define __WORLD__
 
 #define NUM_ROOMS 13
 #define NUM_EXITS 21 //will vary when implementing traps
@@ -20,8 +20,8 @@ public:
 	world();
 	~world();
 
-	void const create_world();
-	void const move();
+	void create_world() const;
+	void move() const;
 
 };
 

@@ -71,8 +71,11 @@
     <ClCompile Include="room.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="entity.h" />
     <ClInclude Include="exits.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="string_own.h" />
+    <ClInclude Include="Vector.h" />
     <ClInclude Include="world.h" />
     <ClInclude Include="room.h" />
   </ItemGroup>

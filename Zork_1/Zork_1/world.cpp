@@ -20,7 +20,9 @@ world::~world()
 	delete[] players;
 }
 
-void const world::create_world()
+//change create world funcs -> new Room("name", "description")
+
+void world::create_world() const
 {
 	int i, j; //i -> rooms, j -> exits;
 
@@ -241,7 +243,7 @@ void const world::create_world()
 
 }
 
-void const world::move()
+void world::move() const
 {
 	char instruction[20]; //stores player's input command
 	
