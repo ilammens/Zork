@@ -5,31 +5,34 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "Vector.h"
 
 world::world()
 {
-	rooms = new Room[NUM_ROOMS];
-	exits = new Exit[NUM_EXITS];
-	players = new player;
+	Vector<Room*> rooms;
+	Vector<Exit*> exits;
+	Vector<player*> players;
 }
 
-world::~world()
-{
-	delete[] rooms;
-	delete[] exits;
-	delete[] players;
-}
+world::~world(){};
 
 //change create world funcs -> new Room("name", "description")
 
-void world::create_world() const
+void world::create_world()
 {
 	int i, j; //i -> rooms, j -> exits;
 
+	rooms.push_back(new Room("Start\n", "You seem to be in a large field. To the north you can see a rocky path, while to the south there is a sand path.\n"));
+	rooms.push_back(new Room("Waterfall\n", "You are now in front of a big waterfall. It looks like to the west there's a cave, hidden behind a curtain of water.\n"));
+	rooms.push_back(new Room("Sword room\n", "With some effort, you get behind the waterfall. You seem to have encountered a cave. In the middle of it, a sword, that looks elvish-made, glimmers with the dim light coming from behind the curtain of water. There's an exit to the east.\n"));
+
+}
+	/*
 	//start + exits
 	i = 0;
 	strcpy_s((rooms + i)->name, "Start\n");
-	strcpy_s((rooms + i)->description, "You seem to be in a large field. To the north you can see a rocky path, while to the south there is a sand path.\n");
+	strcpy_s((rooms + i)->description, "You seem to be in a large field. To the north you can see a rocky path, while to the south there is a sand path.\n"); 
+	
 
 	j = 0;
 	(exits + j)->origin = (rooms + 0);
@@ -239,7 +242,7 @@ void world::create_world() const
 	i = 12;
 	strcpy_s((rooms + i)->name, "Decaying Arena");
 	strcpy_s((rooms + i)->description, "This is a huge decaying, underground arena. Its flattened sand floor and its stone arches carved in the walls of the cavern give you chills. A hooded figure stands in the middle of the room. You can't exit this room.\n");
-
+	
 
 }
 
@@ -490,5 +493,5 @@ void world::move() const
 	} while (1); //((strcmp(instruction, "quit") != 0 || strcmp(instruction, "q") != 0));
 
 
-
 }
+ */

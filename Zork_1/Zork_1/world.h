@@ -7,21 +7,22 @@
 #include "room.h"
 #include "exits.h"
 #include "player.h"
+#include "Vector.h"
 
 class world
 {
 public:
 
-	Room* rooms;
-	Exit* exits;
-	player* players;
+	Vector<Room*> rooms;
+	Vector<Exit*> exits;
+	Vector<player*> players;
 
 public:
 	world();
 	~world();
 
-	void create_world() const;
-	void move() const;
+	void create_world();
+	void move();
 
 };
 

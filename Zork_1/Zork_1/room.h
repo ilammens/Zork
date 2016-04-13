@@ -1,13 +1,14 @@
 #ifndef __ROOM__
 #define __ROOM__
+#include "entity.h"
 
-class Room
+class Room : public Entity
 {
 public:
 
-	char name[30];
-	char description[500];
+	Room(const char* new_name, const char* new_description) : Entity(new_name, new_description){ };
 
+	int num;
 };
 
 #endif
