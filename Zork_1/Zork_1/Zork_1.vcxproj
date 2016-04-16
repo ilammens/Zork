@@ -73,6 +73,7 @@
   <ItemGroup>
     <ClInclude Include="entity.h" />
     <ClInclude Include="exits.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="string_own.h" />
     <ClInclude Include="Vector.h" />

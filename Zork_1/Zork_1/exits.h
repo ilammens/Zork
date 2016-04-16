@@ -12,13 +12,13 @@ class Exit : public Entity
 {
 public:
 
-	Exit(const char* new_name, const char* new_description, int num, bool door_state, Room* origin, Room* destination, direct dir) : Entity(new_name, new_description){ };
+	Exit(const char* new_name, const char* new_description, bool door_state, Room* origin, Room* destination, direct dir) : Entity(new_name, new_description){ };
 
-	/* bool door_state;
+	bool door_state;
 
 	Room* origin;
 	Room* destination;
-	direct dir; */
+	direct dir;
 
 
 };

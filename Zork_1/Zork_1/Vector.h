@@ -1,6 +1,7 @@
 #ifndef __VECTOR__
 #define __VECTOR__
 
+#include <assert.h>
 
 template <class TYPE>
 class Vector
@@ -77,7 +78,7 @@ public: //methods
 		num_elements++;
 	}
 
-	TYPE operator[](uint index)
+	TYPE operator[](unsigned int index) const
 	{
 		assert(index < num_elements);
 		return buffer[index];
