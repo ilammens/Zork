@@ -33,20 +33,17 @@ public: //methods
 		delete[] buffer;
 	}
 
-	void push_back(const TYPE& data)
+	void push_back(const TYPE &data)
 	{
-
 		if (capacity == num_elements)
 		{
-			capacity *= 2;
 			TYPE *temp = nullptr;
+			capacity *= 2;
 			temp = new TYPE[capacity];
-
-			for (TYPE i = 0; i < capacity; i++)
+			for (int i = 0; i < num_elements; i++)
 			{
 				*(temp + i) = *(buffer + i);
 			}
-
 			delete[] buffer;
 			buffer = temp;
 		}
@@ -64,7 +61,7 @@ public: //methods
 
 			for (TYPE i = 0; i < capacity; i++)
 			{
-				*(buffer + (i + 1) = *(temp + (i + 1));
+				*(buffer + (i + 1)) = *(temp + (i + 1));
 			}
 
 			delete[] buffer;
