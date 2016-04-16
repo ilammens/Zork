@@ -20,261 +20,45 @@ world::~world(){};
 
 void world::create_world()
 {
-	rooms.push_back(new Room("Start\n", "You seem to be in a large field. To the north you can see a rocky path, while to the south there is a sand path.\n", 1));
-	rooms.push_back(new Room("Waterfall\n", "You are now in front of a big waterfall. It looks like to the west there's a cave, hidden behind a curtain of water.\n", 2));
-	rooms.push_back(new Room("Sword room\n", "With some effort, you get behind the waterfall. You seem to have encountered a cave. In the middle of it, a sword, that looks elvish-made, glimmers with the dim light coming from behind the curtain of water. There's an exit to the east.\n", 3));
-	rooms.push_back(new Room("Main Chamber\n", "You fell down a nasty hole in the ground! You now find yourself in a strange underground room with stone walls, submerged in an eerie orange light. You can see a dark path leading south.\n", 4));
-	rooms.push_back(new Room("Underground Temple\n", "There are several torches hung on the walls of this temple. An abandoned altar stands in the center of the room, with what seems to be remains of blood covering its once-white surface. You can see an old door to the west, and a dark entrance to the east.\n", 5));
-	rooms.push_back(new Room("Bow Room\n", "This room is completely austere, and there's a shimmering elvish bow hung on the furthermost wall. A little winged pixie stands guard by it. There's an old door to the east.\n", 6));
-	rooms.push_back(new Room("Crystal Cave\n", "The light from a torch hung on the entrance wall refracts on the walls of the cave, which is entirely made of iridescent crystal. There's a huge door to the north, an entrance to the west, and a dimly lit passageway to the east. You hear the sound of trickling water coming from the east.\n", 7));
-	rooms.push_back(new Room("Dragon Statue\n", "An enormous dragon forged in bronze stands guard in the room. In its eye shimmers what appears to be a misplaced emerald. There's a door to the south and another door, intricatedly decorated, behind the statue, and you hear some muffled sounds coming from behind it.\n", 8));
-	rooms.push_back(new Room("Dragon Room\n", "WATCH OUT! There's a huge white dragon curled up in the middle of the room! He seems to be guarding a glowing blue orb. Its flaming red eyes are pointed on you, and from its nostrils there comes out some grey smoke. There's a closed door to your south.\n", 9));
-	rooms.push_back(new Room("Underground Lake\n", "A relatively small and shallow lake occupies this secondary cave. Luminescent plants submerge the cave in a strange greenish light. There's a passageway to the west and a bridge to the east, that crosses the lake, and a staircase to the northwest. You can't see where it ends.\n", 10));
-	rooms.push_back(new Room("Catacombs\n", "You can hear the wind whistling along the dark corridors of these catacombs. The only light comes from a lonesome torch, and the walls are lined with tombs carved in the stone wall and covered in faded smears of blood. There's a bridge to the west, a small unlocked wooden door to the east and a passageway to the north.\n", 11));
-	rooms.push_back(new Room("Orb Room\n", "In a pedestal in the middle of the room, lies another blue orb. The only exit is to the west.\n", 12));
-	rooms.push_back(new Room("Decaying Arena\n", "This is a huge decaying, underground arena. Its flattened sand floor and its stone arches carved in the walls of the cavern give you chills. A hooded figure stands in the middle of the room. You can't exit this room.\n", 13));
+	rooms.push_back(new Room("Start\n", "You seem to be in a large field. To the north you can see a rocky path, while to the south there is a sand path.\n", 0));
+	rooms.push_back(new Room("Waterfall\n", "You are now in front of a big waterfall. It looks like to the west there's a cave, hidden behind a curtain of water.\n", 1));
+	rooms.push_back(new Room("Sword room\n", "With some effort, you get behind the waterfall. You seem to have encountered a cave. In the middle of it, a sword, that looks elvish-made, glimmers with the dim light coming from behind the curtain of water. There's an exit to the east.\n", 2));
+	rooms.push_back(new Room("Main Chamber\n", "You fell down a nasty hole in the ground! You now find yourself in a strange underground room with stone walls, submerged in an eerie orange light. You can see a dark path leading south.\n", 3));
+	rooms.push_back(new Room("Underground Temple\n", "There are several torches hung on the walls of this temple. An abandoned altar stands in the center of the room, with what seems to be remains of blood covering its once-white surface. You can see an old door to the west, and a dark entrance to the east.\n", 4));
+	rooms.push_back(new Room("Bow Room\n", "This room is completely austere, and there's a shimmering elvish bow hung on the furthermost wall. A little winged pixie stands guard by it. There's an old door to the east.\n", 5));
+	rooms.push_back(new Room("Crystal Cave\n", "The light from a torch hung on the entrance wall refracts on the walls of the cave, which is entirely made of iridescent crystal. There's a huge door to the north, an entrance to the west, and a dimly lit passageway to the east. You hear the sound of trickling water coming from the east.\n", 6));
+	rooms.push_back(new Room("Dragon Statue\n", "An enormous dragon forged in bronze stands guard in the room. In its eye shimmers what appears to be a misplaced emerald. There's a door to the south and another door, intricatedly decorated, behind the statue, and you hear some muffled sounds coming from behind it.\n", 7));
+	rooms.push_back(new Room("Dragon Room\n", "WATCH OUT! There's a huge white dragon curled up in the middle of the room! He seems to be guarding a glowing blue orb. Its flaming red eyes are pointed on you, and from its nostrils there comes out some grey smoke. There's a closed door to your south.\n", 8));
+	rooms.push_back(new Room("Underground Lake\n", "A relatively small and shallow lake occupies this secondary cave. Luminescent plants submerge the cave in a strange greenish light. There's a passageway to the west and a bridge to the east, that crosses the lake, and a staircase to the northwest. You can't see where it ends.\n", 9));
+	rooms.push_back(new Room("Catacombs\n", "You can hear the wind whistling along the dark corridors of these catacombs. The only light comes from a lonesome torch, and the walls are lined with tombs carved in the stone wall and covered in faded smears of blood. There's a bridge to the west, a small unlocked wooden door to the east and a passageway to the north.\n", 10));
+	rooms.push_back(new Room("Orb Room\n", "In a pedestal in the middle of the room, lies another blue orb. The only exit is to the west.\n", 11));
+	rooms.push_back(new Room("Decaying Arena\n", "This is a huge decaying, underground arena. Its flattened sand floor and its stone arches carved in the walls of the cavern give you chills. A hooded figure stands in the middle of the room. You can't exit this room.\n", 12));
 
-	exits.push_back(new Exit("Rocky Path\n", "There seems to be a path leading northwards. You hear water roaring if you listen carefully.\n", 0, OPEN));
-	exits.push_back(new Exit("Sand Path\n", "There's a sandy path leading south. Not much more to see.\n", 1, OPEN));
-	exits.push_back(new Exit("Waterfall\n", "If you look carefully, you can see a sort of cave hidden behind the waterfall, to the west.\n", 2, OPEN));
-	exits.push_back(new Exit("Rocky Path\n", "There's a rocky path leading southwards. In the distance you see a huge field.\n", 3, OPEN));
-	exits.push_back(new Exit("Waterfall Cave\n", "You can get out of the cave by heading east.\n", 4, OPEN));
-	exits.push_back(new Exit("Dark Path\n", "An eerie light comes from the end  of a dark path leading south. It seems to be the only way forward.\n", 5, OPEN));
-	exits.push_back(new Exit("Wooden Door\n", "There's a wooden door to the west. It appears to be locked.\n", 6, OPEN));
-	exits.push_back(new Exit("Dark Entrance\n", "There's a dark entrance leading somewhere to your east.\n", 7, CLOSED));
-	exits.push_back(new Exit("Wooden Door\n", "There's a wooden door to the east.\n", 8, OPEN));
-	exits.push_back(new Exit("Dark Entrance\n", "There's a dark entrance to the west. It appears to lead to the Underground Temple again.\n", 9, OPEN));
-	exits.push_back(new Exit("Huge Door\n", "There's a huge locked door to your north. You wonder where it leads...\n", 10, OPEN));
-	exits.push_back(new Exit("Dark Passageway\n", "You can hear the sound of trickling water coming from the east. There's a poorly lit passageway there.\n", 11, OPEN));
-	exits.push_back(new Exit("Decorated Door\n", "You hear deep, rumbling sounds coming from the north, from behind a door. I wonder if it's a good idea to go there... *shivers*\n", 12, OPEN));
-	exits.push_back(new Exit("Huge Door\n", "There's a door leading south. It appears to lead to the Crystal Cave again.\n", 13, OPEN));
-	exits.push_back(new Exit("Decorated Door\n", "Wanna run from the dragon, huh? Quick, head south! There's a door there!\n", 14, OPEN));
-	exits.push_back(new Exit("Dark Passageway\n", "There's a dark passageway leading west. It appears to lead to a familiar, glittering cave.\n", 15, OPEN));
-	exits.push_back(new Exit("Bridge\n", "There's a bridge that crosses the lake to the east. It appears to lead to an eerie, dark room.\n", 16, OPEN));
-	exits.push_back(new Exit("Small Door\n", "There's a small wooden door to the east. You realize it's unlocked, after looking more carefully.\n", 17, OPEN));
-	exits.push_back(new Exit("Dusty Passageway\n", "There's a passageway leading north. There's an air current coming from there, and a weird smell of old dust.\n", 18, OPEN));
-	exits.push_back(new Exit("Bridge\n", "You can see a bridge leading west. It takes back to the Lake.\n", 19, OPEN));
-	exits.push_back(new Exit("Small Door\n", "The only exit you see is a small wooden door to the west.\n", 20, OPEN));
+	exits.push_back(new Exit("Rocky Path\n", "There seems to be a path leading northwards. You hear water roaring if you listen carefully.\n", 0, OPEN, rooms[0], rooms[1], north));
+	exits.push_back(new Exit("Sand Path\n", "There's a sandy path leading south. Not much more to see.\n", 1, OPEN, rooms[0], rooms[3], south));
+	exits.push_back(new Exit("Waterfall\n", "If you look carefully, you can see a sort of cave hidden behind the waterfall, to the west.\n", 2, OPEN, rooms[1], rooms[2], west));
+	exits.push_back(new Exit("Rocky Path\n", "There's a rocky path leading southwards. In the distance you see a huge field.\n", 3, OPEN, rooms[1], rooms[0], south));
+	exits.push_back(new Exit("Waterfall Cave\n", "You can get out of the cave by heading east.\n", 4, OPEN, rooms[2], rooms[1], east));
+	exits.push_back(new Exit("Dark Path\n", "An eerie light comes from the end  of a dark path leading south. It seems to be the only way forward.\n", 5, OPEN, rooms[3], rooms[4], south));
+	exits.push_back(new Exit("Wooden Door\n", "There's a wooden door to the west. It appears to be locked.\n", 6, OPEN, rooms[4], rooms[5], west));
+	exits.push_back(new Exit("Dark Entrance\n", "There's a dark entrance leading somewhere to your east.\n", 7, CLOSED, rooms[4], rooms[6], east));
+	exits.push_back(new Exit("Wooden Door\n", "There's a wooden door to the east.\n", 8, OPEN, rooms[5], rooms[4], east));
+	exits.push_back(new Exit("Dark Entrance\n", "There's a dark entrance to the west. It appears to lead to the Underground Temple again.\n", 9, OPEN, rooms[6], rooms[4], west));
+	exits.push_back(new Exit("Huge Door\n", "There's a huge locked door to your north. You wonder where it leads...\n", 10, OPEN, rooms[6], rooms[7], north));
+	exits.push_back(new Exit("Dark Passageway\n", "You can hear the sound of trickling water coming from the east. There's a poorly lit passageway there.\n", 11, OPEN, rooms[6], rooms[9], east));
+	exits.push_back(new Exit("Decorated Door\n", "You hear deep, rumbling sounds coming from the north, from behind a door. I wonder if it's a good idea to go there... *shivers*\n", 12, OPEN, rooms[7], rooms[8], north));
+	exits.push_back(new Exit("Huge Door\n", "There's a door leading south. It appears to lead to the Crystal Cave again.\n", 13, OPEN, rooms[7], rooms[6], south));
+	exits.push_back(new Exit("Decorated Door\n", "Wanna run from the dragon, huh? Quick, head south! There's a door there!\n", 14, OPEN, rooms[8], rooms[7], south));
+	exits.push_back(new Exit("Dark Passageway\n", "There's a dark passageway leading west. It appears to lead to a familiar, glittering cave.\n", 15, OPEN, rooms[9], rooms[6], west));
+	exits.push_back(new Exit("Bridge\n", "There's a bridge that crosses the lake to the east. It appears to lead to an eerie, dark room.\n", 16, OPEN, rooms[9], rooms[10], east));
+	exits.push_back(new Exit("Small Door\n", "There's a small wooden door to the east. You realize it's unlocked, after looking more carefully.\n", 17, OPEN, rooms[10], rooms[11], east));
+	exits.push_back(new Exit("Dusty Passageway\n", "There's a passageway leading north. There's an air current coming from there, and a weird smell of old dust.\n", 18, OPEN, rooms[10], rooms[12], north));
+	exits.push_back(new Exit("Bridge\n", "You can see a bridge leading west. It takes back to the Lake.\n", 19, OPEN, rooms[10], rooms[9], west));
+	exits.push_back(new Exit("Small Door\n", "The only exit you see is a small wooden door to the west.\n", 20, OPEN, rooms[11], rooms[10], west));
 
 }
 	/*
-	//start + exits
-	i = 0;
-	strcpy_s((rooms + i)->name, "Start\n");
-	strcpy_s((rooms + i)->description, "You seem to be in a large field. To the north you can see a rocky path, while to the south there is a sand path.\n"); 
 	
-
-	j = 0;
-	(exits + j)->origin = (rooms + 0);
-	(exits + j)->destination = (rooms + 1); //waterfall
-	(exits + j)->direction = north;
-	strcpy_s((exits + i)->description, "There seems to be a path leading northwards. You hear water roaring if you listen carefully.\n");
-	strcpy_s((exits + i)->name, "Rocky path");
-	(exits + j)->door_state = OPEN;
-
-	j = 1;
-	(exits + j)->origin = (rooms + 0);
-	(exits + j)->destination = (rooms + 3); //main chamber
-	(exits + j)->direction = south;
-	strcpy_s((exits + i)->description, "There's a sandy path leading south. Not much more to see.\n");
-	(exits + j)->door_state = OPEN;
-
-	//waterfall + exits
-	i = 1;
-	strcpy_s((rooms + i)->name, "Waterfall\n");
-	strcpy_s((rooms + i)->description, "You are now in front of a big waterfall. It looks like to the west there's a cave, hidden behind a curtain of water.\n");
-
-	j = 2;
-	(exits + j)->origin = (rooms + 1);
-	(exits + j)->destination = (rooms + 2); //sword room
-	(exits + j)->direction = west;
-	strcpy_s((exits + i)->description, "If you look carefully, you can see a sort of cave hidden behind the waterfall, to the west.\n");
-	(exits + j)->door_state = OPEN;
-
-	j = 3;
-	(exits + j)->origin = (rooms + 1);
-	(exits + j)->destination = (rooms + 0); //start
-	(exits + j)->direction = south;
-	strcpy_s((exits + i)->description, "There's a rocky path leading southwards. In the distance you see a huge field.\n");
-	(exits + j)->door_state = OPEN;
-
-	//sword room + exits
-	i = 2;
-	strcpy_s((rooms + i)->name, "Sword room\n");
-	strcpy_s((rooms + i)->description, "With some effort, you get behind the waterfall. You seem to have encountered a cave. In the middle of it, a sword, that looks elvish-made, glimmers with the dim light coming from behind the curtain of water. There's an exit to the east.\n");
-
-	j = 4;
-	(exits + j)->origin = (rooms + 2);
-	(exits + j)->destination = (rooms + 1); //waterfall
-	(exits + j)->direction = east;
-	strcpy_s((exits + i)->description, "You can get out of the cave by heading east.\n");
-	(exits + j)->door_state = OPEN;
-
-	//main chamber
-	i = 3;
-	strcpy_s((rooms + i)->name, "Main chamber\n");
-	strcpy_s((rooms + i)->description, "You fell down a nasty hole in the ground! You now find yourself in a strange underground room with stone walls, submerged in an eerie orange light. You can see a dark path leading south.\n");
-
-	j = 5;
-	(exits + j)->origin = (rooms + 3);
-	(exits + j)->destination = (rooms + 4); //underground temple
-	(exits + j)->direction = south;
-	strcpy_s((exits + i)->description, "An eerie light comes from the end  of a dark path leading south. It seems to be the only way forward.\n");
-	(exits + j)->door_state = OPEN;
-
-	//underground temple
-	i = 4;
-	strcpy_s((rooms + i)->name, "Underground temple\n");
-	strcpy_s((rooms + i)->description, "There are several torches hung on the walls of this temple. An abandoned altar stands in the center of the room, with what seems to be remains of blood covering its once-white surface. You can see an old door to the west, and a dark entrance to the east.\n");
-
-	j = 6;
-	(exits + j)->origin = (rooms + 4);
-	(exits + j)->destination = (rooms + 5); //bow room
-	(exits + j)->direction = west;
-	strcpy_s((exits + i)->description, "There's a wooden door to the west. It appears to be locked.\n");
-	(exits + j)->door_state = CLOSED;
-
-	j = 7;
-	(exits + j)->origin = (rooms + 4);
-	(exits + j)->destination = (rooms + 6); //crystal cave
-	(exits + j)->direction = east;
-	strcpy_s((exits + i)->description, "There's a dark entrance leading somewhere to your east.\n");
-	(exits + j)->door_state = OPEN;
-
-	//bow room
-	i = 5;
-	strcpy_s((rooms + i)->name, "Bow room\n");
-	strcpy_s((rooms + i)->description, "This room is completely austere, and there's a shimmering elvish bow hung on the furthermost wall. A little winged pixie stands guard by it. There's an old door to the east.\n");
-
-	j = 8;
-	(exits + j)->origin = (rooms + 5);
-	(exits + j)->destination = (rooms + 4); //underground temple
-	(exits + j)->direction = east;
-	strcpy_s((exits + i)->description, "There's a wooden door to the east. \n It appears to be locked.\n");
-	(exits + j)->door_state = OPEN;
-
-
-	//crystal cave
-	i = 6;
-	strcpy_s((rooms + i)->name, "Crystal Cave\n");
-	strcpy_s((rooms + i)->description, "The light from a torch hung on the entrance wall refracts on the walls of the cave, which is entirely made of iridescent crystal. There's a huge door to the north, an entrance to the west, and a dimly lit passageway to the east. You hear the sound of trickling water coming from the east.\n");
-
-	j = 9;
-	(exits + j)->origin = (rooms + 6);
-	(exits + j)->destination = (rooms + 4); //underground temple
-	(exits + j)->direction = west;
-	strcpy_s((exits + i)->description, "There's a dark entrance to the west. It appears to lead to the Underground Temple again.\n");
-	(exits + j)->door_state = OPEN;
-
-	j = 10;
-	(exits + j)->origin = (rooms + 6);
-	(exits + j)->destination = (rooms + 7); //dragon statue
-	(exits + j)->direction = north;
-	strcpy_s((exits + i)->description, "There's a huge locked door to your north. I wonder where it leads...\n");
-	(exits + j)->door_state = OPEN;
-
-	j = 11;
-	(exits + j)->origin = (rooms + 6);
-	(exits + j)->destination = (rooms + 9); //underground lake
-	(exits + j)->direction = east;
-	strcpy_s((exits + i)->description, "You can hear the sound of trickling water coming from the east. There's a poorly lit passageway there.\n");
-	(exits + j)->door_state = OPEN;
-
-	//dragon statue
-	i = 7;
-	strcpy_s((rooms + i)->name, "Dragon statue\n");
-	strcpy_s((rooms + i)->description, "An enormous dragon forged in bronze stands guard in the room. In its eye shimmers what appears to be a misplaced emerald. There's a door to the south and another door, intricatedly decorated, behind the statue, and you hear some muffled sounds coming from behind it.\n");
-
-	j = 12;
-	(exits + j)->origin = (rooms + 7);
-	(exits + j)->destination = (rooms + 8); //dragon room!
-	(exits + j)->direction = north;
-	strcpy_s((exits + i)->description, "You hear deep, rumbling sounds coming from the north, from behind a door. I wonder if it's a good idea to go there... *shivers*\n");
-	(exits + j)->door_state = OPEN;
-
-	j = 13;
-	(exits + j)->origin = (rooms + 7);
-	(exits + j)->destination = (rooms + 6); //crystal cave
-	(exits + j)->direction = south;
-	strcpy_s((exits + i)->description, "There's a door leading south. It appears to lead to the Crystal Cave again.\n");
-	(exits + j)->door_state = OPEN;
-
-	//Dragon room!
-	i = 8;
-	strcpy_s((rooms + i)->name, "Dragon room\n");
-	strcpy_s((rooms + i)->description, "WATCH OUT! There's a huge white dragon curled up in the middle of the room! He seems to be guarding a glowing blue orb. Its flaming red eyes are pointed on you, and from its nostrils there comes out some grey smoke. There's a closed door to your south.\n");
-
-	j = 14;
-	(exits + j)->origin = (rooms + 8);
-	(exits + j)->destination = (rooms + 7); //dragon statue
-	(exits + j)->direction = south;
-	strcpy_s((exits + i)->description, "Wanna run from the dragon, huh? Quick, head south! There's a door there!\n");
-	(exits + j)->door_state = OPEN;
-
-	//Underground lake
-	i = 9;
-	strcpy_s((rooms + i)->name, "Underground lake\n");
-	strcpy_s((rooms + i)->description, "A relatively small and shallow lake occupies this secondary cave. Luminescent plants submerge the cave in a strange greenish light. There's a passageway to the west and a bridge to the east, that crosses the lake, and a staircase to the northwest. You can't see where it ends.\n");
-
-	j = 15;
-	(exits + j)->origin = (rooms + 9);
-	(exits + j)->destination = (rooms + 6); //crystal cave
-	(exits + j)->direction = west;
-	strcpy_s((exits + i)->description, "There's a dark passageway leading west. It appears to lead to a familiar, glittering cave.\n");
-	(exits + j)->door_state = OPEN;
-
-	j = 16;
-	(exits + j)->origin = (rooms + 9);
-	(exits + j)->destination = (rooms + 10); //catacombs
-	(exits + j)->direction = east;
-	strcpy_s((exits + i)->description, "There's a bridge that crosses the lake to the east. It appears to lead to an eerie, dark room.\n");
-	(exits + j)->door_state = OPEN;
-
-	//Catacombs
-	i = 10;
-	strcpy_s((rooms + i)->name, "Catacombs\n");
-	strcpy_s((rooms + i)->description, "You can hear the wind whistling along the dark corridors of these catacombs. The only light comes from a lonesome torch, and the walls are lined with tombs carved in the stone wall and covered in faded smears of blood. There's a bridge to the west, a small unlocked wooden door to the east and a passageway to the north.\n");
-
-	j = 17;
-	(exits + j)->origin = (rooms + 10);
-	(exits + j)->destination = (rooms + 11); //orb
-	(exits + j)->direction = east;
-	strcpy_s((exits + i)->description, "There's a small wooden door to the east. You realize it's unlocked, after looking more carefully.\n");
-	(exits + j)->door_state = OPEN;
-
-	j = 18;
-	(exits + j)->origin = (rooms + 10);
-	(exits + j)->destination = (rooms + 12); //final room
-	(exits + j)->direction = north;
-	strcpy_s((exits + i)->description, "There's a passageway leading north. There's an air current coming from there, and a weird smell of old dust.\n");
-	(exits + j)->door_state = OPEN;
-
-	j = 19;
-	(exits + j)->origin = (rooms + 10);
-	(exits + j)->destination = (rooms + 9); //underground lake
-	(exits + j)->direction = west;
-	strcpy_s((exits + i)->description, "You can see a bridge leading west. It takes back to the Lake.\n");
-	(exits + j)->door_state = OPEN;
-
-	//Orb
-	i = 11;
-	strcpy_s((rooms + i)->name, "Orb\n");
-	strcpy_s((rooms + i)->description, "In a pedestal in the middle of the room, lies another blue orb. The only exit is to the west.\n");
-
-	j = 20;
-	(exits + j)->origin = (rooms + 11);
-	(exits + j)->destination = (rooms + 10); //catacombs
-	(exits + j)->direction = west;
-	strcpy_s((exits + i)->description, "The only exit you see is a small wooden door to the west.\n");
-	(exits + j)->door_state = OPEN;
-
-	//Arena
-	i = 12;
-	strcpy_s((rooms + i)->name, "Decaying Arena");
-	strcpy_s((rooms + i)->description, "This is a huge decaying, underground arena. Its flattened sand floor and its stone arches carved in the walls of the cavern give you chills. A hooded figure stands in the middle of the room. You can't exit this room.\n");
-	
-
-}
 
 void world::move() const
 {

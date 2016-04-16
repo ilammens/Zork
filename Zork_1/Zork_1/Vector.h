@@ -77,9 +77,10 @@ public: //methods
 		num_elements++;
 	}
 
-	void pop_back()
+	TYPE operator[](uint index)
 	{
-		buffer;
+		assert(index < num_elements);
+		return buffer[index];
 	}
 
 	//clean
