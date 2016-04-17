@@ -1,5 +1,5 @@
-#ifndef __ENTITY_H__
-#define __ENTITY_H__
+#ifndef __ENTITY__
+#define __ENTITY__
 #include "Vector.h"
 #include "string_own.h"
 
@@ -10,6 +10,7 @@ public:
 	String description = nullptr;
 
 public:
+	Entity();
 	Entity(const char* new_name, const char* new_description) : name(new_name), description(new_description){ };
 	~Entity();
 };

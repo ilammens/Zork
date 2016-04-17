@@ -1,12 +1,15 @@
 #ifndef __PLAYER__
 #define __PLAYER__
+#include "entity.h"
 
-#include "room.h"
-
-class player
+class player : public Entity
 {
 public:
 
+	player();
+	~player();
+	//player(const char* new_name, const char* new_description, Room* loc) : Entity(new_name, new_description){};
+	
 	Room* loc;
 };
 

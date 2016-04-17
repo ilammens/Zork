@@ -2,19 +2,20 @@
 #include "room.h"
 #include "exits.h"
 #include "player.h"
-#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "Vector.h"
+#include "Item.h"
 
 world::world()
 {
-	Vector<Room*> rooms;
-	Vector<Exit*> exits;
-	Vector<player*> players;
+	players = new player;
 }
 
-world::~world(){};
+world::~world()
+{
+	delete[] players;
+};
 
 //change create world funcs -> new Room("name", "description")
 
@@ -56,25 +57,34 @@ void world::create_world()
 	exits.push_back(new Exit("Bridge\n", "You can see a bridge leading west. It takes back to the Lake.\n", OPEN, rooms[10], rooms[9], west));
 	exits.push_back(new Exit("Small Door\n", "The only exit you see is a small wooden door to the west.\n", OPEN, rooms[11], rooms[10], west));
 
+	items.push_back(new Item("Sword\n", "It's a fairly old-looking elvish sword, but it's edges are sharp as a razor blade.\n", rooms[2], false, false));
+	items.push_back(new Item("Bag\n", "A simple, worn-out bag. It's fairly big, and you can hang it on your back.\n", rooms[0], false, false));
+	items.push_back(new Item("Torch\n", "It's hung on the wall, but you can easily take it. It gives enough light for you to see in a radius of 4-5m.\n", rooms[4], false, false));
+	items.push_back(new Item("Bow\n", "Another weapon of elvish craft. It's very lightweight. It's made out of birch wood.\n", rooms[5], false, false));
+	items.push_back(new Item("Arrows\n", "Without arrows, a bow is of little use.\n", rooms[5], false, false));
+	items.push_back(new Item("Ladder\n", "A wooden ladder. It seems to be high enough to get to the eye of the statue.", rooms[7], false, false));
+	items.push_back(new Item("Emerald\n", "A shiny, green emerald. As you take it, you hear a light *click*\n", rooms[7], false, false));
+	items.push_back(new Item("Orb\n", "It's a weird crystal orb. It seems as though there's some sort of blue non-harmful gas floating inside.\n", rooms[11], false, false));
 }
-	/*
-	
 
-void world::move() const
+void world::move()
 {
 	char instruction[20]; //stores player's input command
-	
-	char answer[20]; //used for double word commands
 
-	int i = 0; //exits
+	// player* players;
 
-	(players->loc) = (rooms + 0); //player's initial position (start)
-	
+	/*printf("What's your name?");
+	gets_s(p_name);
 
-	printf("You can use the following instructions to play:\nnorth/n/go north\nsouth/s/go south\neast/e/go east\nwest/w/go west\nlook (direction)\nopen (direction)\nhelp\ngo\nquit/q\n");
+	printf("Who are you?");
+	gets_s(p_description);*/
+
+	// players.push_back(new player(p_name, p_description, rooms[0]));
 
 	printf("You are now here: %s\n%s\n", ((players->loc)->name), ((players->loc)->description)); //initial print, shows initial position
 
+}
+	/*
 	do
 	{
 		printf("What do you want to do? ");
