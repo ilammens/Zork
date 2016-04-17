@@ -18,7 +18,7 @@ public:
 
 	Room* origin;
 	Room* destination;
-	direct dir;
+	direct direction;
 
 
 };

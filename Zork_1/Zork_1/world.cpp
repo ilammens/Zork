@@ -1,15 +1,18 @@
 #include "world.h"
-#include "room.h"
-#include "exits.h"
-#include "player.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include "Vector.h"
+#include "room.h"
+#include "entity.h"
+#include "player.h"
+#include "exits.h"
 #include "Item.h"
+#include <string.h>
 
 world::world()
 {
 	players = new player;
+	create_world();
 }
 
 world::~world()
@@ -71,6 +74,8 @@ void world::move()
 {
 	char instruction[20]; //stores player's input command
 
+	int i;
+
 	// player* players;
 
 	/*printf("What's your name?");
@@ -83,8 +88,8 @@ void world::move()
 
 	printf("You are now here: %s\n%s\n", ((players->loc)->name), ((players->loc)->description)); //initial print, shows initial position
 
-}
-	/*
+
+
 	do
 	{
 		printf("What do you want to do? ");
@@ -94,18 +99,18 @@ void world::move()
 		{
 			for (i = 0; i < 20; i++)
 			{
-				if (((players->loc) == ((exits + i)->origin)) && ((exits + i)->direction) == north) //runs trough all the exits until origin and direction match
+				if (((players->loc) == ((exits[i])->origin)) && ((exits[i])->direction) == north) //runs trough all the exits until origin and direction match
 				{
-					if ((exits + i)->door_state == OPEN)
+					if ((exits[i])->door_state == OPEN)
 					{
 						//set new position
-						((players->loc)) = ((exits + i)->destination);
+						((players->loc)) = ((exits[i])->destination);
 						printf("You went north. You are now here: %s\n", ((players->loc)->name));
 						printf("%s\n", ((players->loc)->description));
 						break;
 					}
 
-					else if ((exits + i)->door_state == CLOSED)
+					else if ((exits[i])->door_state == CLOSED)
 					{
 						printf("The door is locked. You need to open it first.\n");
 						break;
@@ -118,18 +123,18 @@ void world::move()
 		{
 			for (i = 0; i < 20; i++)
 			{
-				if (((players->loc) == ((exits + i)->origin)) && ((exits + i)->direction) == south)
+				if (((players->loc) == ((exits[i])->origin)) && ((exits[i])->direction) == south)
 				{
-					if ((exits + i)->door_state == OPEN)
+					if ((exits[i])->door_state == OPEN)
 					{
 						//set new position
-						((players->loc)) = ((exits + i)->destination);
+						((players->loc)) = ((exits[i])->destination);
 						printf("You went south. You are now here: %s\n", ((players->loc)->name));
 						printf("%s\n", ((players->loc)->description));
 						break;
 					}
 
-					else if ((exits + i)->door_state == CLOSED)
+					else if ((exits[i])->door_state == CLOSED)
 					{
 						printf("The door is locked. You need to open it first.\n");
 						break;
@@ -142,18 +147,18 @@ void world::move()
 		{
 			for (i = 0; i < 20; i++)
 			{
-				if (((players->loc) == ((exits + i)->origin)) && ((exits + i)->direction) == east)
+				if (((players->loc) == ((exits[i])->origin)) && ((exits[i])->direction) == east)
 				{
-					if ((exits + i)->door_state == OPEN)
+					if ((exits[i])->door_state == OPEN)
 					{
 						//set new position
-						((players->loc)) = ((exits + i)->destination);
+						((players->loc)) = ((exits[i])->destination);
 						printf("You went east. You are now here: %s\n", ((players->loc)->name));
 						printf("%s\n", ((players->loc)->description));
 						break;
 					}
 
-					else if ((exits + i)->door_state == CLOSED)
+					else if ((exits[i])->door_state == CLOSED)
 					{
 						printf("The door is locked. You need to open it first.\n");
 						break;
@@ -168,18 +173,18 @@ void world::move()
 		{
 			for (i = 0; i < 20; i++)
 			{
-				if (((players->loc) == ((exits + i)->origin)) && ((exits + i)->direction) == west)
+				if (((players->loc) == ((exits[i])->origin)) && ((exits[i])->direction) == west)
 				{
-					if ((exits + i)->door_state == OPEN)
+					if ((exits[i])->door_state == OPEN)
 					{
 						//set new position
-						((players->loc)) = ((exits + i)->destination);
+						((players->loc)) = ((exits[i])->destination);
 						printf("You went west. You are now here: %s\n", ((players->loc)->name));
 						printf("%s\n", ((players->loc)->description));
 						break;
 					}
 
-					else if ((exits + i)->door_state == CLOSED)
+					else if ((exits[i])->door_state == CLOSED)
 					{
 						printf("The door is locked. You need to open it first.\n");
 						break;
@@ -192,9 +197,9 @@ void world::move()
 		{
 			for (i = 0; i < 20; i++)
 			{
-				if ((((exits + i)->door_state) == CLOSED) && (((players->loc) == (exits + 6)->origin) && (((exits+6)->direction) = west))) //opens temple -> bow room
+				if ((((exits[i])->door_state) == CLOSED) && (((players->loc) == (exits[6])->origin) && (((exits[6])->direction) = west))) //opens temple -> bow room
 				{
-					((exits + 6)->door_state) = OPEN; //changes door state
+					((exits[6])->door_state) = OPEN; //changes door state
 					printf("You unlocked the door.\n");
 					break;
 				}
@@ -205,9 +210,9 @@ void world::move()
 		{
 			for (i = 0; i < 20; i++)
 			{
-				if ((((exits + i)->door_state) == CLOSED) && (((players->loc) == (exits + 8)->origin) && (((exits + 8)->direction) = east))) //opens bow room -> temple
+				if ((((exits[i])->door_state) == CLOSED) && (((players->loc) == (exits[8])->origin) && (((exits[8])->direction) = east))) //opens bow room -> temple
 				{
-					((exits + 8)->door_state) = OPEN; //changes door state
+					((exits[8])->door_state) = OPEN; //changes door state
 					printf("You unlocked the door.\n");
 					break;
 				}
@@ -218,9 +223,9 @@ void world::move()
 		{
 			for (i = 0; i < 20; i++)
 			{
-				if ((((exits + i)->door_state) == OPEN) && (((players->loc) == (exits + 8)->origin) && (((exits + 8)->direction) = east))) //closes bow room -> temple
+				if ((((exits[i])->door_state) == OPEN) && (((players->loc) == (exits[8])->origin) && (((exits[8])->direction) = east))) //closes bow room -> temple
 				{
-					((exits + 8)->door_state) = CLOSED; //changes door state
+					((exits[8])->door_state) = CLOSED; //changes door state
 					printf("You locked the door.\n");
 					break;
 				}
@@ -231,9 +236,9 @@ void world::move()
 		{
 			for (i = 0; i < 20; i++)
 			{
-				if ((((exits + i)->door_state) == OPEN) && (((players->loc) == (exits + 6)->origin) && (((exits + 6)->direction) = west))) //closes temple -> bow room
+				if ((((exits[i])->door_state) == OPEN) && (((players->loc) == (exits[6])->origin) && (((exits[6])->direction) = west))) //closes temple -> bow room
 				{
-					((exits + 6)->door_state) = CLOSED; //changes door state
+					((exits[6])->door_state) = CLOSED; //changes door state
 					printf("You locked the door.\n");
 					break;
 				}
@@ -254,9 +259,9 @@ void world::move()
 		{
 			for (i = 0; i < 20; i++)
 			{
-				if (((players->loc) == ((exits + i)->origin)) && ((exits + i)->direction) == north)
+				if (((players->loc) == ((exits[i])->origin)) && ((exits[i])->direction) == north)
 				{
-					printf("To the north there is: %s", ((exits + i)->destination)); //prints north room name
+					printf("To the north there is: %s", ((exits[i])->destination)); //prints north room name
 					break;
 				}
 			}
@@ -266,10 +271,9 @@ void world::move()
 		{
 			for (i = 0; i < 20; i++)
 			{
-				if (((players->loc) == ((exits + i)->origin)) && ((exits + i)->direction) == south)
+				if (((players->loc) == ((exits[i])->origin)) && ((exits[i])->direction) == south)
 				{
-					printf("To the south there is: %s", ((exits + i)->destination)); //prints south room name
-					break;
+					printf("To the south there is: %s", ((exits[i])->destination)); //prints south room name
 				}
 			}
 		}
@@ -278,9 +282,9 @@ void world::move()
 		{
 			for (i = 0; i < 20; i++)
 			{
-				if (((players->loc) == ((exits + i)->origin)) && ((exits + i)->direction) == east)
+				if (((players->loc) == ((exits[i])->origin)) && ((exits[i])->direction) == east)
 				{
-					printf("To the east there is: %s", ((exits + i)->destination)); //prints east room name
+					printf("To the east there is: %s", ((exits[i])->destination)); //prints east room name
 					break;
 				}
 			}
@@ -290,9 +294,9 @@ void world::move()
 		{
 			for (i = 0; i < 20; i++)
 			{
-				if (((players->loc) == ((exits + i)->origin)) && ((exits + i)->direction) == west)
+				if (((players->loc) == ((exits[i])->origin)) && ((exits[i])->direction) == west)
 				{
-					printf("To the west there is: %s", ((exits + i)->destination)); //prints west room name
+					printf("To the west there is: %s", ((exits[i])->destination)); //prints west room name
 					break;
 				}
 			}
@@ -318,4 +322,3 @@ void world::move()
 
 
 }
- */
