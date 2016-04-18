@@ -77,12 +77,17 @@ void world::move()
 
 	String instruction;
 
+	
+
 	int i;
 
 	do
 	{
 		printf("What do you want to do? ");
 		gets_s(ins);
+		printf("%s", ins);
+
+		instruction = ins;
 
 		if (instruction == "north" || instruction == "go north" || instruction == "n")
 		{
