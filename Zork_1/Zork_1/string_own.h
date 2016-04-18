@@ -61,6 +61,33 @@ public:
 		return strcmp(buffer, str.buffer) == 0;
 	}
 
+	void operator =(const String& str)
+	{
+		int len = (strlen(str.buffer) + 1);
+		
+		if (max < len)
+		{
+			delete[]buffer;
+			max = len;
+			buffer = new char[max];
+		}
+		strcpy_s(buffer, max, str.buffer);
+	}
+
+	/* void operator =(const char* str)
+	{
+		int lent = (strlen(str) + 1);
+		
+		if (max < lent)
+		{
+			delete[]buffer;
+			max = lent;
+			buffer = new char[max];
+		}
+		strcpy_s(buffer, max, str);
+	} */
+
+
 };
 
 #endif

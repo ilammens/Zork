@@ -25,12 +25,12 @@ world::~world()
 
 void world::create_world()
 {
-	rooms.push_back(new Room("Start\n", "You seem to be in a large field. To the north you can see a rocky path, while to the south there is a sand path.\n"));
+	rooms.push_back(new Room("Start\n", "You seem to be in a large field. To the north you can see a rocky path, while to the south there is a sand path. There's a bag at your feet.\n"));
 	rooms.push_back(new Room("Waterfall\n", "You are now in front of a big waterfall. It looks like to the west there's a cave, hidden behind a curtain of water.\n"));
 	rooms.push_back(new Room("Sword room\n", "With some effort, you get behind the waterfall. You seem to have encountered a cave. In the middle of it, a sword, that looks elvish-made, glimmers with the dim light coming from behind the curtain of water. There's an exit to the east.\n"));
 	rooms.push_back(new Room("Main Chamber\n", "You fell down a nasty hole in the ground! You now find yourself in a strange underground room with stone walls, submerged in an eerie orange light. You can see a dark path leading south.\n"));
-	rooms.push_back(new Room("Underground Temple\n", "There are several torches hung on the walls of this temple. An abandoned altar stands in the center of the room, with what seems to be remains of blood covering its once-white surface. You can see an old door to the west, and a dark entrance to the east.\n"));
-	rooms.push_back(new Room("Bow Room\n", "This room is completely austere, and there's a shimmering elvish bow hung on the furthermost wall. A little winged pixie stands guard by it. There's an old door to the east.\n"));
+	rooms.push_back(new Room("Underground Temple\n", "There are several torches hung on the walls of this temple. One torch seems slightly looser hung than the others. An abandoned altar stands in the center of the room, with what seems to be remains of blood covering its once-white surface. You can see an old door to the west, and a dark entrance to the east.\n"));
+	rooms.push_back(new Room("Bow Room\n", "This room is completely austere, and there's a shimmering elvish bow hung on the furthermost wall, alongside some arrows. A little winged pixie stands guard by it. There's an old door to the east.\n"));
 	rooms.push_back(new Room("Crystal Cave\n", "The light from a torch hung on the entrance wall refracts on the walls of the cave, which is entirely made of iridescent crystal. There's a huge door to the north, an entrance to the west, and a dimly lit passageway to the east. You hear the sound of trickling water coming from the east.\n"));
 	rooms.push_back(new Room("Dragon Statue\n", "An enormous dragon forged in bronze stands guard in the room. In its eye shimmers what appears to be a misplaced emerald. There's a door to the south and another door, intricatedly decorated, behind the statue, and you hear some muffled sounds coming from behind it.\n"));
 	rooms.push_back(new Room("Dragon Room\n", "WATCH OUT! There's a huge white dragon curled up in the middle of the room! He seems to be guarding a glowing blue orb. Its flaming red eyes are pointed on you, and from its nostrils there comes out some grey smoke. There's a closed door to your south.\n"));
@@ -77,17 +77,17 @@ void world::move()
 
 	String instruction;
 
-	
-
 	int i;
 
 	do
 	{
 		printf("What do you want to do? ");
 		gets_s(ins);
-		printf("%s", ins);
 
 		instruction = ins;
+
+		printf("%s", instruction);
+		printf("%s", ins);
 
 		if (instruction == "north" || instruction == "go north" || instruction == "n")
 		{
