@@ -72,7 +72,7 @@ public:
 			buffer = new char[max];
 		}
 		strcpy_s(buffer, max, str.buffer);
-	}
+	} 
 
 	/* void operator =(const char* str)
 	{

@@ -18,7 +18,7 @@ public:
 	int max = 8;
 	
 	
-
+	~Item(){};
 
 };
 

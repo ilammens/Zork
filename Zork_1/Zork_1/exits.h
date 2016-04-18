@@ -20,6 +20,8 @@ public:
 	Room* destination;
 	direct direction;
 
+	~Exit(){};
+
 
 };
 

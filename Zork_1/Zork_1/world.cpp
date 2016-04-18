@@ -73,18 +73,22 @@ void world::create_world()
 
 void world::move()
 {
+	//printf("You are now here: %s, %s", rooms[0]->name, rooms[0]->description);
+	
 	char instruction[20]; //stores player's input
 
 	//String instruction;
 
 	int i;
 
+	players->loc = (exits[0]->origin); //initial pos
+
 	do
 	{
 		printf("What do you want to do? ");
 		gets_s(instruction);
 
-		if (instruction == "north" || instruction == "go north" || instruction == "n")
+		if ((instruction == "north") == 0|| (instruction == "go north") == 0 || (instruction == "n") == 0)
 		{
 			for (i = 0; i < 20; i++)
 			{
@@ -109,7 +113,7 @@ void world::move()
 			}
 		}
 
-		else if (instruction == "south" || instruction == "go south" || instruction == "s")
+		else if ((instruction == "south") == 0 || (instruction == "go south") == 0 || (instruction == "s") == 0)
 		{
 			for (i = 0; i < 20; i++)
 			{
@@ -133,7 +137,7 @@ void world::move()
 			}
 		}
 
-		else if (instruction == "east" || instruction == "go east" || instruction == "e")
+		else if ((instruction == "east") == 0 || (instruction == "go east") == 0 || (instruction == "e") == 0)
 		{
 			for (i = 0; i < 20; i++)
 			{
