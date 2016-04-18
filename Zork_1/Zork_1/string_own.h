@@ -6,14 +6,19 @@ class String
 {
 public:
 	char* buffer = nullptr;
+	unsigned int max = 200;
+
+	String(){};
 
 	String(const char* str) //constructor
 	{
-		buffer = new char[20];
+		int len = (strlen(str)) + 1;
 
-		int s = strlen(str);
+		max = len;
 
-		strcpy_s(buffer, s + 1, str);
+		buffer = new char[len];
+
+		strcpy_s(buffer, len, str);
 	}
 
 	~String() //destructor
@@ -23,11 +28,13 @@ public:
 
 	String(const String& str) //copy constructor
 	{
-		int s = (strlen(str.buffer));
+		int len = (strlen(str.buffer)) + 1;
 
-		buffer = new char[s + 1];
+		max = len;
 
-		strcpy_s(buffer, s + 1, str.buffer);
+		buffer = new char[len];
+
+		strcpy_s(buffer, len, str.buffer);
 	}
 
 	unsigned int lenght() const
@@ -49,14 +56,10 @@ public:
 		}
 	}
 
-	bool operator ==(const String& str) const //constructs an extra copy 
+	bool operator ==(const String& str) const
 	{
-		if (strcmp(buffer, str.buffer) == 0)
-		{
-			return true;
-		}
+		return strcmp(buffer, str.buffer) == 0;
 	}
-
 
 };
 

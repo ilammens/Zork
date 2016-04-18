@@ -65,6 +65,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="exits.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="world.cpp" />
     <ClCompile Include="main.cpp" />

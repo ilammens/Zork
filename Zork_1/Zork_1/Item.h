@@ -4,7 +4,7 @@
 #include "entity.h"
 #include "room.h"
 
-enum objects{SWORD, BAG, TORCH, BOW, ARROWS, LADDER, EMERALD, ORB};
+enum objects{SWORD, BAG, TORCH, BOW, ARROWS, ORB};
 
 class Item : public Entity
 {
@@ -14,6 +14,12 @@ public:
 	Room* origin;
 	bool equipped;
 	bool inventory;
+
+	int max = 8;
+
+	void take(const char* instruction);
+	void equip();
+	void unequip();
 
 };
 

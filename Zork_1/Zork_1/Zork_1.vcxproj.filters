@@ -30,6 +30,9 @@
     <ClCompile Include="player.cpp">
       <Filter>Headers</Filter>
     </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Headers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="room.h">

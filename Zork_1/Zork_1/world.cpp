@@ -8,6 +8,7 @@
 #include "exits.h"
 #include "Item.h"
 #include <string.h>
+#include "string_own.h"
 
 world::world()
 {
@@ -72,30 +73,18 @@ void world::create_world()
 
 void world::move()
 {
-	char instruction[20]; //stores player's input command
+	char ins[20]; //stores player's input command
+
+	String instruction;
 
 	int i;
-
-	// player* players;
-
-	/*printf("What's your name?");
-	gets_s(p_name);
-
-	printf("Who are you?");
-	gets_s(p_description);*/
-
-	// players.push_back(new player(p_name, p_description, rooms[0]));
-
-	printf("You are now here: %s\n%s\n", ((players->loc)->name), ((players->loc)->description)); //initial print, shows initial position
-
-
 
 	do
 	{
 		printf("What do you want to do? ");
-		gets_s(instruction);
+		gets_s(ins);
 
-		if (strcmp(instruction, "north") == 0 || strcmp(instruction, "go north") == 0 || strcmp(instruction, "n") == 0)
+		if (instruction == "north" || instruction == "go north" || instruction == "n")
 		{
 			for (i = 0; i < 20; i++)
 			{
@@ -105,6 +94,7 @@ void world::move()
 					{
 						//set new position
 						((players->loc)) = ((exits[i])->destination);
+						printf("%s", (exits[i]->destination));
 						printf("You went north. You are now here: %s\n", ((players->loc)->name));
 						printf("%s\n", ((players->loc)->description));
 						break;
@@ -119,7 +109,7 @@ void world::move()
 			}
 		}
 
-		else if (strcmp(instruction, "south") == 0 || strcmp(instruction, "go south") == 0 || strcmp(instruction, "s") == 0)
+		else if (instruction == "south"|| instruction == "go south"|| instruction == "s")
 		{
 			for (i = 0; i < 20; i++)
 			{
@@ -143,7 +133,7 @@ void world::move()
 			}
 		}
 
-		else if (strcmp(instruction, "east") == 0 || strcmp(instruction, "go east") == 0 || strcmp(instruction, "e") == 0)
+		else if (instruction == "east"|| instruction == "go east"|| instruction == "e")
 		{
 			for (i = 0; i < 20; i++)
 			{
@@ -169,7 +159,7 @@ void world::move()
 			}
 		}
 
-		else if (strcmp(instruction, "west") == 0 || strcmp(instruction, "go west") == 0 || strcmp(instruction, "w") == 0)
+		else if (instruction == "west"|| instruction == "go west"|| instruction == "w")
 		{
 			for (i = 0; i < 20; i++)
 			{
@@ -193,7 +183,7 @@ void world::move()
 			}
 		}
 
-		else if (strcmp(instruction, "open west") == 0)
+		else if (instruction == "open west")
 		{
 			for (i = 0; i < 20; i++)
 			{
@@ -206,7 +196,7 @@ void world::move()
 			}
 		}
 
-		else if (strcmp(instruction, "open east") == 0)
+		else if (instruction == "open east")
 		{
 			for (i = 0; i < 20; i++)
 			{
@@ -219,7 +209,7 @@ void world::move()
 			}
 		}
 
-		else if (strcmp(instruction, "close east") == 0)
+		else if (instruction == "close east")
 		{
 			for (i = 0; i < 20; i++)
 			{
@@ -232,7 +222,7 @@ void world::move()
 			}
 		}
 
-		else if (strcmp(instruction, "close west") == 0)
+		else if (instruction == "close west")
 		{
 			for (i = 0; i < 20; i++)
 			{
@@ -245,17 +235,17 @@ void world::move()
 			}
 		}
 
-		else if (strcmp(instruction, "help") == 0)
+		else if (instruction == "help")
 		{
 			printf("You can use the following instructions to play:\nnorth/n/go north\nsouth/s/go south\neast/e/go east\nwest/w/go west\nlook (direction)\nopen (direction)\nhelp\ngo\nquit/q\n");
 		}
 
-		else if (strcmp(instruction, "look") == 0)
+		else if (instruction == "look")
 		{
 			printf("You are now here: %s\n%s\n", ((players->loc)->name), ((players->loc)->description)); //prints current room name again
 		}
 
-		else if (strcmp(instruction, "look north") == 0)
+		else if (instruction == "look north")
 		{
 			for (i = 0; i < 20; i++)
 			{
@@ -267,7 +257,7 @@ void world::move()
 			}
 		}
 
-		else if (strcmp(instruction, "look south") == 0)
+		else if (instruction == "look south")
 		{
 			for (i = 0; i < 20; i++)
 			{
@@ -278,7 +268,7 @@ void world::move()
 			}
 		}
 
-		else if (strcmp(instruction, "look east") == 0)
+		else if (instruction == "look east")
 		{
 			for (i = 0; i < 20; i++)
 			{
@@ -290,7 +280,7 @@ void world::move()
 			}
 		}
 
-		else if (strcmp(instruction, "look west") == 0)
+		else if (instruction == "look west")
 		{
 			for (i = 0; i < 20; i++)
 			{
@@ -302,12 +292,103 @@ void world::move()
 			}
 		}
 
-		else if (strcmp(instruction, "go") == 0)
+		else if (instruction == "go")
 		{
 			printf("In which direction do you want to head? ");
 		}
 
-		else if (strcmp(instruction, "quit") == 0 || strcmp(instruction, "q") == 0)
+		else if (instruction == "take")
+		{
+			printf("What do you want to take? ");
+			gets_s(ins);
+
+			for (i = 0; i < 5; i++)
+			{
+				int cap = 0;
+
+			if (instruction == "sword" || instruction == "bow" || instruction == "torch" || instruction == "bag" || instruction == "arrows" || instruction == "orb")
+				{
+					if (items[i]->origin == players->loc)
+					{
+						if (items[i]->inventory = false && cap < 8)
+						{
+							items[i]->inventory = true;
+							printf("%s has been added to your bag.", items[i]->name);
+							printf("%s %s", items[i]->name, items[i]->description);
+							cap++;
+						}
+
+						else
+							printf("Better leave that there and come back for it when you have more space in your bag.\n");
+					}
+				}
+			}
+		}
+
+		else if (instruction == "drop")
+		{
+			printf("What do you want to drop? ");
+			gets_s(ins);
+
+			if (instruction == "sword" || instruction == "bow" || instruction == "torch" || instruction == "bag" || instruction == "arrows" || instruction == "orb")
+			{
+				if (items[i]->inventory = true)
+				{
+					items[i]->equipped = false;
+					items[i]->inventory = false;
+					items[i]->origin = players->loc;
+					printf("You dropped the %s.\n", items[i]->name);
+					break;
+				}
+
+				else
+					printf("You can't drop something that isn't in your bag!\n");
+					break;
+			}
+		}
+
+		else if (instruction == "equip")
+		{
+			printf("What do you want to equip? ");
+			gets_s(ins);
+
+			if (instruction == "sword" || instruction == "bow" || instruction == "torch" || instruction == "bag" || instruction == "arrows" || instruction == "orb")
+			{
+				if (items[i]->equipped = false)
+				{
+					items[i]->equipped = true;
+					printf("You have equipped the %s.\n", items[i]->name);
+					break;
+				}
+
+				else
+					printf("This item is already equipped!\n");
+					break;
+			}
+		}
+
+		else if (instruction == "unequip")
+		{
+			printf("What do you want to unequip? ");
+			gets_s(ins);
+
+			if (instruction == "sword" || instruction == "bow" || instruction == "torch" || instruction == "bag" || instruction == "arrows" || instruction == "orb")
+			{
+				if (items[i]->equipped = true)
+				{
+					items[i]->equipped = false;
+					printf("You have unequipped the %s.\n", items[i]->name);
+					break;
+				}
+
+				else
+					printf("You can't unequip what is already unequipped!\n");
+				break;
+			}
+		}
+
+
+		else if (instruction == "quit" || instruction == "q")
 		{
 			printf("Bye! Thanks for playing :) - Game By: Isabel Lammens! :3\n\n");
 			break;
