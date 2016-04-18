@@ -12,7 +12,7 @@ public:
 public:
 	
 	Entity(const char* new_name, const char* new_description) : name(new_name), description(new_description){ };
-	~Entity();
+	~Entity(){};
 };
 
 #endif
