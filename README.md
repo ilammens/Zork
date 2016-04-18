@@ -8,6 +8,8 @@ Implemented commands:
 - help
 - quit
 - open east/close east (only one door can be opened/closed)
+- take/drop
+- equip/unequip
 
 13 rooms to explore! Each of them has different descriptions and names.
 
