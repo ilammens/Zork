@@ -1,6 +1,7 @@
 #ifndef __PLAYER__
 #define __PLAYER__
 #include "entity.h"
+#include "Item.h"
 
 class player //: public Entity
 {
@@ -9,6 +10,15 @@ public:
 	
 	Room* loc;
 
+	enum stats
+	{
+		no_stats,
+		sword_attack,
+		sword_defense,
+		sword_strenght
+	};
+
+	stats sword = no_stats;
 };
 
 #endif

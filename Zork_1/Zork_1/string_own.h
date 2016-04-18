@@ -56,9 +56,9 @@ public:
 		}
 	}
 
-	bool operator ==(const String& str) const
+	bool operator ==(const char* str) const
 	{
-		return strcmp(buffer, str.buffer) == 0;
+		return strcmp(buffer, str) == 0;
 	}
 
 	void operator =(const String& str)

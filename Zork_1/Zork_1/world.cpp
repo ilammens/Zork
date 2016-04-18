@@ -73,21 +73,16 @@ void world::create_world()
 
 void world::move()
 {
-	char ins[20]; //stores player's input command
+	char instruction[20]; //stores player's input
 
-	String instruction;
+	//String instruction;
 
 	int i;
 
 	do
 	{
 		printf("What do you want to do? ");
-		gets_s(ins);
-
-		instruction = ins;
-
-		printf("%s", instruction);
-		printf("%s", ins);
+		gets_s(instruction);
 
 		if (instruction == "north" || instruction == "go north" || instruction == "n")
 		{
@@ -114,7 +109,7 @@ void world::move()
 			}
 		}
 
-		else if (instruction == "south"|| instruction == "go south"|| instruction == "s")
+		else if (instruction == "south" || instruction == "go south" || instruction == "s")
 		{
 			for (i = 0; i < 20; i++)
 			{
@@ -138,7 +133,7 @@ void world::move()
 			}
 		}
 
-		else if (instruction == "east"|| instruction == "go east"|| instruction == "e")
+		else if (instruction == "east" || instruction == "go east" || instruction == "e")
 		{
 			for (i = 0; i < 20; i++)
 			{
@@ -164,7 +159,7 @@ void world::move()
 			}
 		}
 
-		else if (instruction == "west"|| instruction == "go west"|| instruction == "w")
+		else if (instruction == "west" || instruction == "go west" || instruction == "w")
 		{
 			for (i = 0; i < 20; i++)
 			{
@@ -305,13 +300,13 @@ void world::move()
 		else if (instruction == "take")
 		{
 			printf("What do you want to take? ");
-			gets_s(ins);
+			gets_s(instruction);
 
 			for (i = 0; i < 5; i++)
 			{
 				int cap = 0;
 
-			if (instruction == "sword" || instruction == "bow" || instruction == "torch" || instruction == "bag" || instruction == "arrows" || instruction == "orb")
+				if (instruction == "sword" || instruction == "bow" || instruction == "torch" || instruction == "bag" || instruction == "arrows" || instruction == "orb")
 				{
 					if (items[i]->origin == players->loc)
 					{
@@ -332,32 +327,40 @@ void world::move()
 
 		else if (instruction == "drop")
 		{
-			printf("What do you want to drop? ");
-			gets_s(ins);
+			int i;
+			int cap = 0;
 
-			if (instruction == "sword" || instruction == "bow" || instruction == "torch" || instruction == "bag" || instruction == "arrows" || instruction == "orb")
+			printf("What do you want to drop? ");
+			gets_s(instruction);
+
+			for (i = 0; i < 0; i--)
 			{
-				if (items[i]->inventory = true)
+
+				if (instruction == "sword" || instruction == "bow" || instruction == "torch" || instruction == "bag" || instruction == "arrows" || instruction == "orb")
 				{
-					items[i]->equipped = false;
-					items[i]->inventory = false;
-					items[i]->origin = players->loc;
-					printf("You dropped the %s.\n", items[i]->name);
+					if (items[i]->inventory = true && cap < 0)
+					{
+						items[i]->equipped = false;
+						items[i]->inventory = false;
+						items[i]->origin = players->loc;
+						printf("You dropped the %s.\n", items[i]->name);
+						cap--;
+						break;
+					}
+
+					else
+						printf("You can't drop something that isn't in your bag!\n");
 					break;
 				}
-
-				else
-					printf("You can't drop something that isn't in your bag!\n");
-					break;
 			}
 		}
 
 		else if (instruction == "equip")
 		{
 			printf("What do you want to equip? ");
-			gets_s(ins);
+			gets_s(instruction);
 
-			if (instruction == "sword" || instruction == "bow" || instruction == "torch" || instruction == "bag" || instruction == "arrows" || instruction == "orb")
+			if (instruction == "sword" || instruction == "bow" || instruction == "torch" || instruction == "bag" || instruction == "arrows")
 			{
 				if (items[i]->equipped = false)
 				{
@@ -368,14 +371,24 @@ void world::move()
 
 				else
 					printf("This item is already equipped!\n");
-					break;
+				break;
+			}
+		}
+
+		else if (instruction == "orb")
+		{
+			if (items[i]->equipped = false)
+			{
+				items[i]->equipped = true;
+				printf("You have equipped the magic orb! You can now attack 4 times in a row with your sword!");
+				break;
 			}
 		}
 
 		else if (instruction == "unequip")
 		{
 			printf("What do you want to unequip? ");
-			gets_s(ins);
+			gets_s(instruction);
 
 			if (instruction == "sword" || instruction == "bow" || instruction == "torch" || instruction == "bag" || instruction == "arrows" || instruction == "orb")
 			{
@@ -405,6 +418,5 @@ void world::move()
 		}
 
 	} while (1); //((strcmp(instruction, "quit") != 0 || strcmp(instruction, "q") != 0));
-
 
 }

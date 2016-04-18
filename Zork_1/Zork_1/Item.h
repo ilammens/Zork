@@ -16,10 +16,9 @@ public:
 	bool inventory;
 
 	int max = 8;
+	
+	
 
-	void take(const char* instruction);
-	void equip();
-	void unequip();
 
 };
 
