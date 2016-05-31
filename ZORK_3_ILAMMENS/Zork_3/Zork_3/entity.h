@@ -3,26 +3,24 @@
 
 #include "my_string.h"
 #include "l_list.h"
+#include "global.h"
 
 class Entity
 {
 public:
 
-	enum e_type
-	{
-		CREATURE,
-		EXIT,
-		ROOM,
-		ITEM
-	};
+	e_type type;
 
 	String name;
 	String description;
 
-	List<Entity*> entities;
+	//List<Entity*> entity;
 
 	Entity();
+	Entity(const char* name, const char* description, e_type type) : name(name), description(description), type(type) {};
 	~Entity();
+
+	virtual state Update(){ return state::CONTINUE; };
 };
 
 #endif //entity
