@@ -55,10 +55,10 @@ public:
 		return len;
 	}
 
-	const char* c_str() const //avoids deletion of buffer outside the code, allows only to read it
+	/*const char* c_str() const //avoids deletion of buffer outside the code, allows only to read it
 	{
 		return buffer;
-	}
+	}*/
 
 	bool empty() const
 	{

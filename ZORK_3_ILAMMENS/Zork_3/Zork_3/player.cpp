@@ -87,13 +87,44 @@ void Player::take(String items)
 {
 	if (used < max)
 	{
-		for (i = 0; i < 20; i++)
+		for (i = 0; i < 7; i++)
 		{
 			if (((Item*)catacombs->entities[i])->origin == loc && ((Item*)catacombs->entities[i])->invent == false)
 			{
+				(((Item*)catacombs->entities[i])->location) = loc;
 				((Item*)catacombs->entities[i])->invent == true;
-				printf("%s has been added to your bag.\n");
+				printf("%s has been added to your bag.\n", ((Item*)catacombs->entities[i])->name);
+				printf("%s\n", ((Item*)catacombs->entities[i])->description);
+				used++;
 			}
+
+			else
+				printf("You already have this item in your bag.\n");
+		}
+	}
+}
+
+void Player::drop(String items)
+{
+	if (used < max)
+	{
+		for (i = 0; i < 7; i++)
+		{
+			if (((Item*)catacombs->entities[i])->location == loc && ((Item*)catacombs->entities[i])->equip == true)
+			{
+				printf("You must first unequip this item.\n");
+			}
+
+			else if (((Item*)catacombs->entities[i])->location == loc && ((Item*)catacombs->entities[i])->invent == true)
+			{
+				(((Item*)catacombs->entities[i])->location) = loc;
+				((Item*)catacombs->entities[i])->invent == false;
+				printf("%s has been dropped.\n");
+				used--;
+			}
+
+			else
+				printf("You don't have this item in your bag, so you can't drop it.\n");
 		}
 	}
 }

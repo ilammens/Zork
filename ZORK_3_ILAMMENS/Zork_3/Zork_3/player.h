@@ -29,6 +29,7 @@ public:
 	void open(dir direction);
 	void close(dir direction);
 	void take(String items);
+	void drop(String items);
 
 	
 

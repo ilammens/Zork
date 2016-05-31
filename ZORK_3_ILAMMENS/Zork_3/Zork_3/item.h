@@ -9,14 +9,16 @@ class Item : public Entity
 {
 public:
 
-	Item(const char* name, const char* description, Room* origin, bool invent, bool equip, e_type type, objects num) : Entity(name, description, type){};
+	Item(const char* name, const char* description, Room* origin, bool invent, bool equip, e_type type, int damage, int hp) : Entity(name, description, type){};
 	~Item();
 
 	bool invent;
 	bool equip;
 	Room* origin;
+	Room* location;
 
-	objects num;
+	int damage;
+	int hp;
 
 
 };

@@ -49,13 +49,13 @@ World::World()
 	entities.push_back(new Exit("Bridge\n", "You can see a bridge leading west. It takes back to the Lake.\n", OPEN, (Room*)entities[10], (Room*)entities[9], west, EXIT));
 	entities.push_back(new Exit("Small Door\n", "The only exit you see is a small wooden door to the west.\n", OPEN, (Room*)entities[11], (Room*)entities[10], west, EXIT));
 
-	entities.push_back(new Item("Sword\n", "It's a fairly old-looking elvish sword, but it's edges are sharp as a razor blade.\n", (Room*)entities[2], false, false, ITEM, sword));
-	entities.push_back(new Item("Bag\n", "A simple, worn-out bag. It's fairly big, and you can hang it on your back.\n", (Room*)entities[0], false, false, ITEM, bag));
-	entities.push_back(new Item("Torch\n", "It's hung on the wall, but you can easily take it. It gives enough light for you to see in a radius of 4-5m.\n", (Room*)entities[4], false, false, ITEM, torch));
-	entities.push_back(new Item("Bow\n", "Another weapon of elvish craft. It's very lightweight. It's made out of birch wood.\n", (Room*)entities[5], false, false, ITEM, bow));
-	entities.push_back(new Item("Arrows\n", "Without arrows, a bow is of little use.\n", (Room*)entities[5], false, false, ITEM, arrows));
-	entities.push_back(new Item("Emerald\n", "A shiny, green emerald. As you take it, you hear a light *click*\n", (Room*)entities[7], false, false, ITEM, emerald));
-	entities.push_back(new Item("Orb\n", "It's a weird crystal orb. It seems as though there's some sort of blue non-harmful gas floating inside.\n", (Room*)entities[11], false, false, ITEM, orb));
+	entities.push_back(new Item("Sword\n", "It's a fairly old-looking elvish sword, but it's edges are sharp as a razor blade.\n", (Room*)entities[2], false, false, ITEM, 10, 0));
+	entities.push_back(new Item("Bag\n", "A simple, worn-out bag. It's fairly big, and you can hang it on your back.\n", (Room*)entities[0], false, false, ITEM, 0, 0));
+	entities.push_back(new Item("Torch\n", "It's hung on the wall, but you can easily take it. It gives enough light for you to see in a radius of 4-5m.\n", (Room*)entities[4], false, false, ITEM, 0, 5));
+	entities.push_back(new Item("Bow\n", "Another weapon of elvish craft. It's very lightweight. It's made out of birch wood.\n", (Room*)entities[5], false, false, ITEM, 5, 5));
+	entities.push_back(new Item("Arrows\n", "Without arrows, a bow is of little use.\n", (Room*)entities[5], false, false, ITEM, 15, 0));
+	entities.push_back(new Item("Emerald\n", "A shiny, green emerald. As you take it, you hear a light *click*\n", (Room*)entities[7], false, false, ITEM, 0, 10));
+	entities.push_back(new Item("Orb\n", "It's a weird crystal orb. It seems as though there's some sort of blue non-harmful gas floating inside.\n", (Room*)entities[11], false, false, ITEM, 10, 50));
 
 	runna = new Player("Runna\n", "You're an average-looking elf. You've got white braided hair that reaches your middle back, and you're wearing what appear to be warrior robes. You carry no weapons.", CREATURE, 150, 10, (Room*)entities[0]);
 	entities.push_back(runna);
@@ -82,10 +82,9 @@ bool World::game()
 			if (update == STOP)
 				return false;
 
-			if (update == error)
+			if (runna->hp <= 0)
 			{
-				printf("An error has occurred :(\n");
-				getchar();
+				printf("You have been killed and sent to hades to dwell for eternity.\n");
 				return false;
 			}
 		}
@@ -97,27 +96,30 @@ bool World::game()
 		{
 			if (charcommandnum < (COMMANDBUFFER - 2)){
 				command[charcommandnum] = _getch();
-				command[charcommandnum + 1] = '\0';
-				printf("String: %s\n", command); //prints command state
-				charcommandnum++;
+
+				if (command[charcommandnum] == '\b' && charcommandnum>0){
+					charcommandnum--;
+					command[charcommandnum] = '\0';
+				}
+				else{
+					command[charcommandnum + 1] = '\0';
+					charcommandnum++;
+				}
 
 				system("cls");
-				printf("You chose: %s\n", command);
+				printf("What will you do?: %s\n", command);
 
 				if (command[charcommandnum - 1] == '\r')
 				{ //prints command and deletes it afterwards
 					printf("You chose: %s\n", command);
 					command[charcommandnum - 1] = '\0';
 					charcommandnum = 0;
+
 					instruction = command;
 
 					Vector<String> token;
 					instruction.tokenize(token);
 
-					printf("What do you want to do?\n");
-
-					while (1)
-					{
 						if (token[0] == "north" || token[0] == "go" && token[1] == "north" || token[0] == "n")
 						{
 							runna->move(north);
@@ -196,6 +198,14 @@ bool World::game()
 							}
 						}
 
+						if (token[0] == "drop")
+						{
+							if (token[1] == "sword" || token[1] == "bow" || token[1] == "arrows" || token[1] == "bag") //|| token[1] = "emerald" || token[1] == "orb" || token[1] == "torch")
+							{
+								runna->drop(token[1]);
+							}
+						}
+
 						if (token[0] == "q" || token[0] == "quit")
 						{
 							printf("Thanks for playing! :3\n");
@@ -203,8 +213,9 @@ bool World::game()
 						}
 
 					}
-				}
-				else{
+				
+				else
+				{
 					command[COMMANDBUFFER - 1] = '\0';
 				}
 			}
