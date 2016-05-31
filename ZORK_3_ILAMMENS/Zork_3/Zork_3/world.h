@@ -4,7 +4,7 @@
 #include "vector.h"
 #include "entity.h"
 
-#define DELAY 1000
+#define DELAY 10000
 #define COMMANDBUFFER 50
 
 class World
@@ -12,17 +12,21 @@ class World
 public:
 
 	Vector<Entity*> entities;
+//	Player* runna;
 
+public:
 	World();
 	~World();
 
-	void game();
-	void move();
+	bool game();
 
 	char command[COMMANDBUFFER];
 	bool loop_1 = true;
 	unsigned int currenttime = 0;
 	unsigned int initialtime = 0;
+	unsigned int charcommandnum = 0;
+
+	
 
 };
 #endif //world

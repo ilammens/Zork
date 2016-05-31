@@ -1,12 +1,15 @@
 #include "world.h"
-#include "room.h"
 #include "exit.h"
-#include "entity.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include "global.h"
 #include "item.h"
 #include "player.h"
+#include <Windows.h>
+#include "conio.h"
+#include "room.h"
+
+Player* runna;
 
 World::World()
 {
@@ -46,19 +49,165 @@ World::World()
 	entities.push_back(new Exit("Bridge\n", "You can see a bridge leading west. It takes back to the Lake.\n", OPEN, (Room*)entities[10], (Room*)entities[9], west, EXIT));
 	entities.push_back(new Exit("Small Door\n", "The only exit you see is a small wooden door to the west.\n", OPEN, (Room*)entities[11], (Room*)entities[10], west, EXIT));
 
-	entities.push_back(new Item("Sword\n", "It's a fairly old-looking elvish sword, but it's edges are sharp as a razor blade.\n", (Room*)entities[2], false, false, ITEM));
-	entities.push_back(new Item("Bag\n", "A simple, worn-out bag. It's fairly big, and you can hang it on your back.\n", (Room*)entities[0], false, false, ITEM));
-	entities.push_back(new Item("Torch\n", "It's hung on the wall, but you can easily take it. It gives enough light for you to see in a radius of 4-5m.\n", (Room*)entities[4], false, false, ITEM));
-	entities.push_back(new Item("Bow\n", "Another weapon of elvish craft. It's very lightweight. It's made out of birch wood.\n", (Room*)entities[5], false, false, ITEM));
-	entities.push_back(new Item("Arrows\n", "Without arrows, a bow is of little use.\n", (Room*)entities[5], false, false, ITEM));
-	entities.push_back(new Item("Ladder\n", "A wooden ladder. It seems to be high enough to get to the eye of the statue.", (Room*)entities[7], false, false, ITEM));
-	entities.push_back(new Item("Emerald\n", "A shiny, green emerald. As you take it, you hear a light *click*\n", (Room*)entities[7], false, false, ITEM));
-	entities.push_back(new Item("Orb\n", "It's a weird crystal orb. It seems as though there's some sort of blue non-harmful gas floating inside.\n", (Room*)entities[11], false, false, ITEM));
+	entities.push_back(new Item("Sword\n", "It's a fairly old-looking elvish sword, but it's edges are sharp as a razor blade.\n", (Room*)entities[2], false, false, ITEM, sword));
+	entities.push_back(new Item("Bag\n", "A simple, worn-out bag. It's fairly big, and you can hang it on your back.\n", (Room*)entities[0], false, false, ITEM, bag));
+	entities.push_back(new Item("Torch\n", "It's hung on the wall, but you can easily take it. It gives enough light for you to see in a radius of 4-5m.\n", (Room*)entities[4], false, false, ITEM, torch));
+	entities.push_back(new Item("Bow\n", "Another weapon of elvish craft. It's very lightweight. It's made out of birch wood.\n", (Room*)entities[5], false, false, ITEM, bow));
+	entities.push_back(new Item("Arrows\n", "Without arrows, a bow is of little use.\n", (Room*)entities[5], false, false, ITEM, arrows));
+	entities.push_back(new Item("Emerald\n", "A shiny, green emerald. As you take it, you hear a light *click*\n", (Room*)entities[7], false, false, ITEM, emerald));
+	entities.push_back(new Item("Orb\n", "It's a weird crystal orb. It seems as though there's some sort of blue non-harmful gas floating inside.\n", (Room*)entities[11], false, false, ITEM, orb));
 
-	entities.push_back(new Player("Runna\n", "You're an average-looking elf. You've got white braided hair that reaches your middle back, and you're wearing what appear to be warrior robes. You carry no weapons.", CREATURE, 100));
-}
-
+	runna = new Player("Runna\n", "You're an average-looking elf. You've got white braided hair that reaches your middle back, and you're wearing what appear to be warrior robes. You carry no weapons.", CREATURE, 150, 10, (Room*)entities[0]);
+	entities.push_back(runna);
 };
 
 World::~World(){};
+
+bool World::game()
+{
+	state update;
+	String instruction;
+	int i;
+
+	initialtime = GetTickCount();
+
+	//runs code every x milliseconds (DELAY)
+	currenttime = GetTickCount();
+	if (currenttime >= (initialtime + DELAY))
+	{
+		for (int i = 0; i < entities.size(); i++)
+		{
+			update = entities[i]->Update();
+
+			if (update == STOP)
+				return false;
+
+			if (update == error)
+			{
+				printf("An error has occurred :(\n");
+				getchar();
+				return false;
+			}
+		}
+		initialtime = currenttime;
+	}
+
+
+		if (_kbhit())
+		{
+			if (charcommandnum < (COMMANDBUFFER - 2)){
+				command[charcommandnum] = _getch();
+				command[charcommandnum + 1] = '\0';
+				printf("String: %s\n", command); //prints command state
+				charcommandnum++;
+
+				system("cls");
+				printf("You chose: %s\n", command);
+
+				if (command[charcommandnum - 1] == '\r')
+				{ //prints command and deletes it afterwards
+					printf("You chose: %s\n", command);
+					command[charcommandnum - 1] = '\0';
+					charcommandnum = 0;
+					instruction = command;
+
+					Vector<String> token;
+					instruction.tokenize(token);
+
+					printf("What do you want to do?\n");
+
+					while (1)
+					{
+						if (token[0] == "north" || token[0] == "go" && token[1] == "north" || token[0] == "n")
+						{
+							runna->move(north);
+						}
+
+						if (token[0] == "south" || token[0] == "go" && token[1] == "south" || token[0] == "s")
+						{
+							runna->move(south);
+						}
+
+						if (token[0] == "east" || token[0] == "go" && token[1] == "east" || token[0] == "e")
+						{
+							runna->move(east);
+						}
+
+						if (token[0] == "west" || token[0] == "go" && token[1] == "west" || token[0] == "w")
+						{
+							runna->move(west);
+						}
+
+						if (token[0] == "help")
+						{
+							printf("You can use the following instructions to play:\nnorth/n/go north\nsouth/s/go south\neast/e/go east\nwest/w/go west\nlook\nopen (direction)\ntake\ndrop\nequip\nunequip\ntalk\nattackhelp\ngo\nquit/q\n");
+						}
+
+						if (token[0] == "look")
+						{
+							runna->look_here();
+						}
+
+						if (token[0] == "look" && token[1] == "north")
+						{
+							runna->look(north);
+						}
+
+						if (token[0] == "look" && token[1] == "south")
+						{
+							runna->look(south);
+						}
+
+						if (token[0] == "look" && token[1] == "east")
+						{
+							runna->look(east);
+						}
+
+						if (token[0] == "look" && token[1] == "west")
+						{
+							runna->look(west);
+						}
+
+						if (token[0] == "open" && (token[1] == "north" || token[1] == "n"))
+						{
+							runna->open(north);
+						}
+
+						if (token[0] == "open" && (token[1] == "south" || token[1] == "s"))
+						{
+							runna->open(south);
+						}
+
+						if (token[0] == "open" && (token[1] == "east" || token[1] == "e"))
+						{
+							runna->open(east);
+						}
+
+						if (token[0] == "open" && (token[1] == "west" || token[1] == "w"))
+						{
+							runna->open(west);
+						}
+
+						if (token[0] == "take")
+						{
+							if (token[1] == "sword" || token[1] == "bow" || token[1] == "arrows" || token[1] == "bag") //|| token[1] = "emerald" || token[1] == "orb" || token[1] == "torch")
+							{
+								runna->take(token[1]);
+							}
+						}
+
+						if (token[0] == "q" || token[0] == "quit")
+						{
+							printf("Thanks for playing! :3\n");
+							return false;
+						}
+
+					}
+				}
+				else{
+					command[COMMANDBUFFER - 1] = '\0';
+				}
+			}
+		}
+	}
 

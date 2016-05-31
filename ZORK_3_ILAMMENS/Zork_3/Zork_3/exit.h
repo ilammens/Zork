@@ -19,7 +19,6 @@ public:
 
 	bool door_state;
 
-	Exit();
 	Exit(const char* name, const char* description, bool door_state, Room* origin, Room* destination, dir direction, e_type type) : Entity(name, description, type) {};
 	~Exit();
 };

@@ -10,7 +10,6 @@ public:
 
 	Room* location;
 
-	Creature();
 	Creature(const char* name, const char* description, e_type type) : Entity(name, description, type){};
 	~Creature();
 };

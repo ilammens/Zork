@@ -23,7 +23,7 @@ enum state
 {
 	CONTINUE,
 	STOP,
-	ERROR
+	error
 };
 
 #endif //global

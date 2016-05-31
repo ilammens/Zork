@@ -47,7 +47,7 @@ public:
 	void clear()
 	{
 		buffer[0] = '\0';
-	} 
+	}
 
 	unsigned int lenght() const
 	{
@@ -85,5 +85,18 @@ public:
 		}
 		strcpy_s(buffer, max, str.buffer);
 	}
-};
+
+	void tokenize(Vector<String> &tokens)
+	{
+		char* context = nullptr;
+		tokens.push_back(String(strtok_s(buffer, " ", &context)));
+
+		while (*context != '\0')
+		{
+			tokens.push_back(String(strtok_s(NULL, " ", &context)));
+		}
+	}
+
+
+}
 #endif //my_string
